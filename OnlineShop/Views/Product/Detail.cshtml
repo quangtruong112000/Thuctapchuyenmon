@@ -1,0 +1,186 @@
+﻿@model Model.EF.Product
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var category = (Model.EF.ProductCategory)ViewBag.Category;
+    var relatedProducts = (List<Model.EF.Product>)ViewBag.RelatedProducts;
+}
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="/san-pham/@category.MetaTitle-@category.ID">@category.Name</a></li>>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Product main img -->
+            <div class="col-md-5 col-md-push-2">
+                <div id="product-main-img">
+                    <div class="product-preview">
+                        <img src="@Model.Image" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- /Product main img -->
+            <!-- Product thumb imgs -->
+            <div class="col-md-2  col-md-pull-5">
+                <div id="product-imgs">
+                    <div class="product-preview">
+                        <img src="./img/product01.png" alt="">
+                    </div>
+
+                    <div class="product-preview">
+                        <img src="./img/product03.png" alt="">
+                    </div>
+
+                    <div class="product-preview">
+                        <img src="./img/product06.png" alt="">
+                    </div>
+
+                    <div class="product-preview">
+                        <img src="./img/product08.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- /Product thumb imgs -->
+            <!-- Product details -->
+            <div class="col-md-5">
+                <div class="product-details">
+                    <h2 class="product-name">@Model.Name</h2>
+                    <div>
+                        <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <a class="review-link" href="#">10 Review(s) | Add your review</a>
+                    </div>
+                    <div>
+                        <h3 class="product-price"> Giá: <span>@(Model.Price.HasValue? Model.Price.Value.ToString("N0"):"Liên hệ")</span> VND</h3>
+                        <span class="product-available">In Stock</span>
+                    </div>
+                    <p>@Model.Description</p>
+                    <div class="add-to-cart">
+                        <div class="qty-label">
+                            Qty
+                            <div class="input-number">
+                                <input type="number">
+                                <span class="qty-up">+</span>
+                                <span class="qty-down">-</span>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                    </div>
+
+                    <ul class="product-btns">
+                        <li><a href="#"><i class="fa fa-heart-o"></i> Thêm vào danh sách yêu thích</a></li>
+                        <li><a href="#"><i class="fa fa-exchange"></i> Thêm vào so sánh</a></li>
+                    </ul>
+
+                    <ul class="product-links">
+                        <li>Share:</li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- /Product details -->
+            <!-- Product tab -->
+            <div class="col-md-12">
+                <div id="product-tab">
+                    <!-- product tab nav -->
+                    <ul class="tab-nav">
+                        <li class="active"><a data-toggle="tab" href="#tab1">Chi tiết</a></li>
+                    </ul>
+                    <!-- /product tab nav -->
+                    <!-- product tab content -->
+                    <div class="tab-content">
+                        <!-- tab1  -->
+                        <div id="tab1" class="tab-pane fade in active">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>
+                                        @Html.Raw(Model.Detail)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /tab1  -->
+                    </div>
+                    <!-- /product tab content  -->
+                </div>
+            </div>
+            <!-- /product tab -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- Section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3 class="title"><a href="/san-pham">Sản phẩm liên quan</a></h3>
+                </div>
+            </div>
+
+            <!-- product -->
+            <div class="col-md-3 col-xs-6">
+                @foreach (var item in relatedProducts)
+                {
+                    var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                    <div class="product">
+                        <div class="product-img">
+                            <a href="@url"><img src="@item.Image" alt=""></a>
+                        </div>
+                        <div class="product-body">
+                            <p class="product-category">Category</p>
+                            <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                            <h4 class="product-price">@(item.Price.HasValue? item.Price.Value.ToString("N0"):"Liên hệ")></h4>
+                            <div class="product-btns">
+                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thêm vào danh sách yêu thích</span></button>
+                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Thêm vào so sánh</span></button>
+                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem nhanh</span></button>
+                            </div>
+                        </div>
+                        <div class="add-to-cart">
+                            <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="@url">Thêm vào giỏ hàng</a></h4>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <!-- /product -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /Section -->

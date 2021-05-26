@@ -1,4 +1,4 @@
-﻿using Model.Dao;
+﻿    using Model.Dao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,10 @@ namespace OnlineShop.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.Slides = new SlideDao().ListAll();
+            var productDao = new ProductDao();
+            ViewBag.ListNewProducts = productDao.ListNewProduct(4);
+            ViewBag.ListFeatureProducts = productDao.ListFeatureProduct(4);
             return View();
         }
         [ChildActionOnly]
