@@ -18,6 +18,10 @@ namespace Model.Dao
         {
             return db.Products.OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
+        public List<Product> ListByCategoryId(long categoryID)
+        {
+            return db.Products.Where(x => x.CategoryID == categoryID).ToList();
+        }
         public List<Product> ListFeatureProduct(int top)
         {
             return db.Products.Where(x => x.TopHot != null && x.TopHot > DateTime.Now).OrderByDescending(x => x.CreatedDate).Take(top).ToList();

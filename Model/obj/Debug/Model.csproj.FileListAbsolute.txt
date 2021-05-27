@@ -25,8 +25,8 @@ C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\bin\Debug\EntityFramework.xml
 C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\bin\Debug\PagedList.xml
 C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\bin\Debug\PagedList.Mvc.xml
-C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\obj\Debug\Model.csprojAssemblyReference.cache
 C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\obj\Debug\Model.dll
 C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\obj\Debug\Model.pdb
+C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\obj\Debug\Model.csprojAssemblyReference.cache
