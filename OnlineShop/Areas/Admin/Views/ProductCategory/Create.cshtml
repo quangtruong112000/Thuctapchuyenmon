@@ -1,0 +1,75 @@
+﻿@model Model.EF.ProductCategory
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header{
+    Thêm mới danh mục sản phẩm
+}
+@section jsFooter{
+}
+
+<div class="row">
+    <div class="col-lg-7">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Thêm sản phẩm!</h1>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>ProductCategory</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MetaTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.MetaTitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ParentID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.ParentID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ParentID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(model => model.Status)
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button>Thêm</button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

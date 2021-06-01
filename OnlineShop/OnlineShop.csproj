@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BotDetect, Version=4.4.2.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.4.2\lib\net35\BotDetect.dll</HintPath>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc, Version=4.4.2.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.4.2\lib\net35\BotDetect.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="CKFinder">
       <HintPath>..\..\..\ckfinder\bin\Release\CKFinder.dll</HintPath>
     </Reference>
@@ -53,6 +59,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -63,6 +72,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -137,27 +149,36 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
+    <Compile Include="Common\HasCredentialAttribute.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\DistrictModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ProvinceModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\UserLogin.cs" />
-    <Compile Include="Views\Home\HomeController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\admin\css\sb-admin-2.css" />
@@ -168,6 +189,8 @@
     <Content Include="Assets\admin\img\undraw_profile_2.svg" />
     <Content Include="Assets\admin\img\undraw_profile_3.svg" />
     <Content Include="Assets\admin\img\undraw_rocket.svg" />
+    <Content Include="Assets\admin\js\controller\productcategoryController.js" />
+    <Content Include="Assets\admin\js\controller\productController.js" />
     <Content Include="Assets\admin\js\controller\userController.js" />
     <Content Include="Assets\admin\js\demo\chart-area-demo.js" />
     <Content Include="Assets\admin\js\demo\chart-bar-demo.js" />
@@ -2816,6 +2839,7 @@
     <Content Include="Assets\admin\vendor\jquery\jquery.min.js" />
     <Content Include="Assets\admin\vendor\jquery\jquery.slim.js" />
     <Content Include="Assets\admin\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Assets\client\css\boostrap-social.css" />
     <Content Include="Assets\client\css\bootstrap.min.css" />
     <Content Include="Assets\client\css\font-awesome.min.css" />
     <Content Include="Assets\client\css\nouislider.min.css" />
@@ -2823,6 +2847,7 @@
     <Content Include="Assets\client\css\slick.css" />
     <Content Include="Assets\client\css\slider.css" />
     <Content Include="Assets\client\css\style.css" />
+    <Content Include="Assets\client\data\Provinces_Data.xml" />
     <Content Include="Assets\client\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\client\fonts\slick.svg" />
     <Content Include="Assets\client\img\casio\Casio-1200WHD-1AVDF-399x399.jpg" />
@@ -2830,12 +2855,20 @@
     <Content Include="Assets\client\img\saga\saga_53585-RGMPRG-2S.jpg" />
     <Content Include="Assets\client\img\saga\saga_71865-SVBLSV-2L-399x399.jpg" />
     <Content Include="Assets\client\js\bootstrap.min.js" />
+    <Content Include="Assets\client\js\controller\baseController.js" />
     <Content Include="Assets\client\js\controller\cartController.js" />
+    <Content Include="Assets\client\js\controller\contactController.js" />
+    <Content Include="Assets\client\js\controller\userController.js" />
+    <Content Include="Assets\client\js\jquery-ui.js" />
     <Content Include="Assets\client\js\jquery.min.js" />
     <Content Include="Assets\client\js\jquery.zoom.min.js" />
     <Content Include="Assets\client\js\main.js" />
     <Content Include="Assets\client\js\nouislider.min.js" />
     <Content Include="Assets\client\js\slick.min.js" />
+    <Content Include="Assets\client\template\contact.html" />
+    <Content Include="Assets\client\template\neworder.html" />
+    <Content Include="bin\OnlineShop.dll" />
+    <Content Include="bin\OnlineShop.pdb" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -3054,6 +3087,41 @@
     <Content Include="Assets\admin\js\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Assets\admin\js\plugins\ckeditor\skins\moono\images\Thumbs.db" />
     <Content Include="Assets\admin\js\plugins\ckeditor\skins\moono\readme.md" />
+    <Content Include="Assets\client\less\animated.less" />
+    <Content Include="Assets\client\less\bordered-pulled.less" />
+    <Content Include="Assets\client\less\core.less" />
+    <Content Include="Assets\client\less\fixed-width.less" />
+    <Content Include="Assets\client\less\font-awesome.less" />
+    <Content Include="Assets\client\less\icons.less" />
+    <Content Include="Assets\client\less\larger.less" />
+    <Content Include="Assets\client\less\list.less" />
+    <Content Include="Assets\client\less\mixins.less" />
+    <Content Include="Assets\client\less\path.less" />
+    <Content Include="Assets\client\less\rotated-flipped.less" />
+    <Content Include="Assets\client\less\stacked.less" />
+    <Content Include="Assets\client\less\variables.less" />
+    <Content Include="Assets\client\scss\font-awesome.scss" />
+    <Content Include="Assets\client\scss\_animated.scss" />
+    <Content Include="Assets\client\scss\_bordered-pulled.scss" />
+    <Content Include="Assets\client\scss\_core.scss" />
+    <Content Include="Assets\client\scss\_fixed-width.scss" />
+    <Content Include="Assets\client\scss\_icons.scss" />
+    <Content Include="Assets\client\scss\_larger.scss" />
+    <Content Include="Assets\client\scss\_list.scss" />
+    <Content Include="Assets\client\scss\_mixins.scss" />
+    <Content Include="Assets\client\scss\_path.scss" />
+    <Content Include="Assets\client\scss\_rotated-flipped.scss" />
+    <Content Include="Assets\client\scss\_stacked.scss" />
+    <Content Include="Assets\client\scss\_variables.scss" />
+    <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\401.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
     <Content Include="Assets\admin\js\plugins\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Assets\admin\js\plugins\ckfinder\plugins\gallery\colorbox\images\Thumbs.db" />
     <Content Include="Assets\admin\js\plugins\ckfinder\userfiles\.htaccess" />
@@ -3091,6 +3159,14 @@
     <Content Include="Views\Shared\HeaderCart.cshtml" />
     <Content Include="Views\Cart\Payment.cshtml" />
     <Content Include="Views\Cart\Success.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
+    <Content Include="Views\Content\Index.cshtml" />
+    <Content Include="Views\Content\Detail.cshtml" />
+    <Content Include="Views\Content\Tag.cshtml" />
+    <Content Include="Views\Product\Store.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3111,6 +3187,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{40691f90-780f-4295-8c8a-49c5320170a8}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{6d22b27f-25ae-4d3b-a6df-cb68a3a5b398}</Project>
       <Name>Model</Name>
@@ -3149,7 +3229,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

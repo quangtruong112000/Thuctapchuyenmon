@@ -30,3 +30,5 @@ C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\obj\Debug\Model.csproj.CopyComplet
 C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\obj\Debug\Model.dll
 C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\obj\Debug\Model.pdb
 C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\bin\Debug\Common.dll
+C:\Users\Admin\Desktop\Thuctapchuyenmon\Model\bin\Debug\Common.pdb

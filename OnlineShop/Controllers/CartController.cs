@@ -1,8 +1,10 @@
-﻿using Model.Dao;
+﻿using Common;
+using Model.Dao;
 using Model.EF;
 using OnlineShop.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -124,6 +126,7 @@ namespace OnlineShop.Controllers
                 var id = new OrderDao().Insert(order);
                 var cart = (List<CartItem>)Session[CartSession];
                 var detailDao = new OrderDetailDao();
+                decimal total = 0;
                 foreach (var item in cart)
                 {
                     var orderDetail = new OrderDetail();
@@ -132,7 +135,18 @@ namespace OnlineShop.Controllers
                     orderDetail.Price = item.Product.Price;
                     orderDetail.Quantity = item.Quantity;
                     detailDao.Insert(orderDetail);
+                    total += (item.Product.Price.GetValueOrDefault(0) * item.Quantity);
                 }
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/client/template/neworder.html"));
+
+                content = content.Replace("{{CustomerName}}", shipName);
+                content = content.Replace("{{Phone}}", mobile);
+                content = content.Replace("{{Email}}", email);
+                content = content.Replace("{{Address}}", address);
+                content = content.Replace("{{Total}}", total.ToString("N0"));
+                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+                new MailHelper().SendMail(email, "Đơn hàng mới từ OnlineShop", content);
+                new MailHelper().SendMail(toEmail, "Đơn hàng mới từ OnlineShop", content);
             }
             catch (Exception ex)
             {

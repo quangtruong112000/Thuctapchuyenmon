@@ -1,11 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var slides = (List<Model.EF.Slide>)ViewBag.Slides;
     var listnewProducts = (List<Model.EF.Product>)ViewBag.ListNewProducts;
     var listFeatureProducts = (List<Model.EF.Product>)ViewBag.ListFeatureProducts;
 }
+
 
 <!-- SECTION -->
 <div class="section">
@@ -27,19 +27,12 @@
                         <input type="radio" name="radio-btn" id="radio2">
                         <input type="radio" name="radio-btn" id="radio3">
                         <input type="radio" name="radio-btn" id="radio4">
-                        <div class="slide first ">
-                            <img src="images/slider4.jpg" alt="">
-                        </div>
-                        <div class="slide">
-                            <img src="images/slider2.jpg" alt="">
-                        </div>
-                        <div class="slide">
-                            <img src="images/slider3.jpg" alt="">
-                        </div>
-                        <div class="slide">
-                            <img src="images/slider1.jpg" alt="">
-                        </div>
-
+                        @foreach (var item in slides)
+                        {
+                            <div class="slide first ">
+                                <img src="@item.Image" alt="">
+                            </div>
+                        }
                         <div class="navigation-auto">
                             <div class="auto-btn1"></div>
                             <div class="auto-btn2"></div>
@@ -55,7 +48,7 @@
                     </div>
                 </div>
                 <script type="text/javascript">
-    var counter = 1;
+                    var counter = 1;
                     setInterval(function () {
                         document.getElementById('radio' + counter).checked = true;
                         counter++;
@@ -104,17 +97,13 @@
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">@item.Name</a></h3>
                                             <h4 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
+                                            <h4>@(item.Status? "Còn hàng":"Hết hàng")</h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thêm vào danh sách mong muốn</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Thêm vào so sánh</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem nhanh</span></button>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
@@ -168,17 +157,13 @@
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">@item.Name</a></h3>
                                             <h4 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
+                                            <h4>@(item.Status? "Còn hàng":"Hết hàng")</h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thêm vào danh sách mong muốn</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Thêm vào so sánh</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem nhanh</span></button>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">

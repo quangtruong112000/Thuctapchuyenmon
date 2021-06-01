@@ -2,61 +2,48 @@
 @{
     var category = (Model.EF.ProductCategory)ViewBag.Category;
     ViewBag.Title = category.Name;
+    ViewBag.Keywords = category.MetaKeywords;
+    ViewBag.Descriptions = category.MetaDescriptions;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<!-- SECTION -->
 <div class="section">
     <!-- container -->
     <div class="container">
         <!-- row -->
         <div class="row">
-
-            <!-- section title -->
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h3 class="title"><a href="#">@category.Name</a></h3>
-                </div>
-            </div>
-            <!-- /section title -->
-            <!-- Products tab & slick -->
-            <div class="col-md-12">
+            <!-- STORE -->
+            <div id="store" class="col-md-12">
+                <!-- store products -->
                 <div class="row">
-                    <div class="products-tabs">
-                        <!-- tab -->
-                        <div id="tab1" class="tab-pane active">
-                            <div class="products-slick" data-nav="#slick-nav-1">
-                                <!-- product -->
-                                @foreach (var item in Model)
-                                {
-                                    var link = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
-                                    <div class="product-img">
-                                        <a href="@link"><img src="@item.Image" alt=""></a>
-                                    </div>
-                                    <div class="product-body">
-                                        <h3 class="product-name"><a href="#">@item.Name</a></h3>
-                                        <h4 class="product-price">@(item.Price.HasValue? item.Price.Value.ToString("N0"):"Liên hệ")</h4>                                       
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thêm vào danh sách mong muốn</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Thêm vào so sánh</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem nhanh</span></button>
-                                            <div class="add-to-cart">
-                                                <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/gio-hang/@item.ID">Thêm vào giỏ hàng</a></h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                }                                                                                                         
-                                <!-- /product -->
+                    <!-- product -->
+                    @foreach (var item in Model)
+                    {
+                        var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                        <div class="product col-md-4">
+                            <div class="product-img">
+                                <a href="@url"><img src="@item.Image" width="390" alt="@item.Name"></a>
                             </div>
-                            <div id="slick-nav-1" class="products-slick-nav"></div>
+                            <div class="product-body">
+                                <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                                <h4 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
+                                <h4>@(item.Status? "Còn hàng":"Hết hàng")</h4>
+                            </div>
+                            <div class="add-to-cart">
+                                <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ hàng</a></h4>
+                            </div>
                         </div>
-                        <!-- /tab -->
-                    </div>
+                    }
+
                 </div>
+                <!-- /product -->
+                <div class="clearfix visible-lg visible-md visible-sm visible-xs"></div>
+                <!-- /store products -->
             </div>
-            <!-- Products tab & slick -->
+            <!-- /STORE -->
         </div>
         <!-- /row -->
     </div>
     <!-- /container -->
 </div>
+<!-- /SECTION -->

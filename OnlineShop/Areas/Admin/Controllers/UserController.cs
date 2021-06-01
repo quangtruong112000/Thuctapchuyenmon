@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Model.Dao;
 using Model.EF;
+using Model.Dao;
 using OnlineShop.Common;
 using PagedList;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
+
     public class UserController : BaseController
     {
         // GET: Admin/User
@@ -17,7 +18,9 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             var dao = new UserDao();
             var model = dao.ListAllPaging(searchString, page, pageSize);
+
             ViewBag.SearchString = searchString;
+
             return View(model);
         }
         [HttpGet]
@@ -25,31 +28,34 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             return View();
         }
-        public ActionResult Edit(int id)
-        {
-            var user = new UserDao().ViewDetail(id);
-            return View(user);
-        }
+
         [HttpPost]
         public ActionResult Create(User user)
         {
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
+
                 var encryptedMd5Pas = Encryptor.GetMD5(user.Password);
                 user.Password = encryptedMd5Pas;
+
                 long id = dao.Insert(user);
                 if (id > 0)
                 {
-                    SetAlert("Thêm thành công", "success");
+                    SetAlert("Thêm user thành công", "success");
                     return RedirectToAction("Index", "User");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Thêm không thành công");
+                    ModelState.AddModelError("", "Thêm user không thành công");
                 }
             }
             return View("Index");
+        }
+        public ActionResult Edit(int id)
+        {
+            var user = new UserDao().ViewDetail(id);
+            return View(user);
         }
         [HttpPost]
         public ActionResult Edit(User user)
@@ -62,11 +68,12 @@ namespace OnlineShop.Areas.Admin.Controllers
                     var encryptedMd5Pas = Encryptor.GetMD5(user.Password);
                     user.Password = encryptedMd5Pas;
                 }
-                
+
+
                 var result = dao.Update(user);
                 if (result)
                 {
-                    SetAlert("Cập nhật thành công", "success");
+                    SetAlert("Sửa thành công", "success");
                     return RedirectToAction("Index", "User");
                 }
                 else
@@ -80,8 +87,10 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             new UserDao().Delete(id);
+
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public JsonResult ChangeStatus(long id)
         {
@@ -89,7 +98,12 @@ namespace OnlineShop.Areas.Admin.Controllers
             return Json(new
             {
                 status = result
-            }) ;
+            });
+        }
+        public ActionResult Logout()
+        {
+            Session[CommonConstants.USER_SESSION] = null;
+            return Redirect("/admin/login/");
         }
     }
 }

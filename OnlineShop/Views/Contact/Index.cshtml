@@ -1,0 +1,47 @@
+﻿@model Model.EF.Contact
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section jsFooter{
+    <script src="/Assets/client/js/controller/contactController.js"></script>
+}
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <h2>Thông tin liên hệ</h2>
+                @Html.Raw(Model.Content)
+
+                <br />
+                <h2>Gửi thông tin</h2>
+                <form>
+                    <div class="form-group">
+                        <label>Họ tên</label>
+                        <input type="text" id="txtName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Điện thoại</label>
+                        <input type="text" id="txtMobile" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ</label>
+                        <input type="text" id="txtAddress" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" id="txtEmail" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Yêu cầu</label>
+                        <textarea id="txtContent" class="form-control">
+
+                        </textarea>
+                    </div>
+                    <button id="btnSend" class="btn btn-success">Gửi đi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

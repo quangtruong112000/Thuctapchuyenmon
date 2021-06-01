@@ -18,6 +18,8 @@
         [StringLength(50)]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
+        [StringLength(20)]
+        public string GroupID { get; set; }
 
         [StringLength(50)]
         [Display(Name = "Tên")]
@@ -34,6 +36,8 @@
         [StringLength(50)]
         [Display(Name = "Số điện thoại")]
         public string Phone { get; set; }
+        public int? ProvinceID { get; set; }
+        public int? DistrictID { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 

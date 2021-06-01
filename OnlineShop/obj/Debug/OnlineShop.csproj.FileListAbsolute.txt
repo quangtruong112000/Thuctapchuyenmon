@@ -179,3 +179,11 @@ C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\obj\Debug\OnlineShop.csproj.C
 C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\obj\Debug\OnlineShop.csproj.CopyComplete
 C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\obj\Debug\OnlineShop.dll
 C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\obj\Debug\OnlineShop.pdb
+C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\Common.dll
+C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\Common.pdb
+C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\BotDetect.dll
+C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\BotDetect.Web.Mvc.dll
+C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\System.Data.SQLite.dll
+C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\System.Data.SQLite.xml
+C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\Facebook.dll
+C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\Facebook.xml

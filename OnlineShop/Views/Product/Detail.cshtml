@@ -1,6 +1,8 @@
 ﻿@model Model.EF.Product
 @{
     ViewBag.Title = Model.Name;
+    ViewBag.Keywords = Model.MetaKeywords;
+    ViewBag.Descriptions = Model.MetaDescriptions;
     Layout = "~/Views/Shared/_Layout.cshtml";
     var category = (Model.EF.ProductCategory)ViewBag.Category;
     var relatedProducts = (List<Model.EF.Product>)ViewBag.RelatedProducts;
@@ -71,30 +73,15 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <a class="review-link" href="#">10 Review(s) | Add your review</a>
                     </div>
                     <div>
                         <h3 class="product-price"> Giá: <span>@(Model.Price.HasValue? Model.Price.Value.ToString("N0"):"Liên hệ")</span> VND</h3>
-                        <span class="product-available">In Stock</span>
+                        <span class="product-available">@(Model.Status? "Còn hàng":"Hết hàng")</span>
                     </div>
                     <p>@Model.Description</p>
                     <div class="add-to-cart">
-                        <div class="qty-label">
-                            Qty
-                            <div class="input-number">
-                                <input type="number">
-                                <span class="qty-up">+</span>
-                                <span class="qty-down">-</span>
-                            </div>
-                        </div>
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@Model.ID&quantity=1">Thêm vào giỏ hàng</a></button>
                     </div>
-
-                    <ul class="product-btns">
-                        <li><a href="#"><i class="fa fa-heart-o"></i> Thêm vào danh sách yêu thích</a></li>
-                        <li><a href="#"><i class="fa fa-exchange"></i> Thêm vào so sánh</a></li>
-                    </ul>
-
                     <ul class="product-links">
                         <li>Share:</li>
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -167,17 +154,12 @@
                                             <a href="@url"><img src="@item.Image" alt=""></a>
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">Category</p>
                                             <h3 class="product-name"><a href="#">@item.Name</a></h3>
                                             <h4 class="product-price">@(item.Price.HasValue? item.Price.Value.ToString("N0"):"Liên hệ")></h4>
-                                            <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thêm vào danh sách yêu thích</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Thêm vào so sánh</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem nhanh</span></button>
-                                            </div>
+                                            <h4>@(item.Status? "Còn hàng":"Hết hàng")</h4>
                                         </div>
                                         <div class="add-to-cart">
-                                            <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="@url">Thêm vào giỏ hàng</a></h4>
+                                            <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ hàng</a></h4>
                                         </div>
                                     </div>
                                 }

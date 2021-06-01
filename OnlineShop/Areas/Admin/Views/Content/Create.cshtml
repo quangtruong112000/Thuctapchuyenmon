@@ -24,15 +24,6 @@
             });
         })
 
-        @*function readURL(input) {
-
-            if (input.files && input.files[0]) {
-
-                var img = $('.file-upload-content');
-               
-
-            };
-        }*@
     </script>
 
 }
@@ -88,7 +79,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Detail, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" }, id= "txtContent" })
+                @Html.TextBoxFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -98,38 +89,6 @@
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Warranty, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ModifiedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ModifiedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ModifiedDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ModifiedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ModifiedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ModifiedBy, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -153,25 +112,9 @@
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.TextBoxFor(model => model.Status)
+                    @Html.CheckBoxFor(model => model.Status)
                     @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TopHot, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.TopHot, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TopHot, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ViewCount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ViewCount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ViewCount, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -185,7 +128,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button>Thêm</button>
+                <button>Tạo mới</button>
             </div>
         </div>
     </div>

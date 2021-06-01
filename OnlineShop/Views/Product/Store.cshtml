@@ -1,0 +1,46 @@
+﻿@model List<Model.EF.Product>
+@{
+    ViewBag.Title = "Store";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- STORE -->
+            <div id="store" class="col-md-12">
+                <!-- store products -->
+                <div class="row">
+                    <!-- product -->
+                    @foreach (var item in Model)
+                    {
+                        var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                        <div class="product col-md-4">
+                            <div class="product-img">
+                                <a href="@url"><img src="@item.Image" width="390" alt="@item.Name"></a>
+                            </div>
+                            <div class="product-body">
+                                <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                                <h4 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
+                                <h4>@(item.Status? "Còn hàng":"Hết hàng")</h4>
+                            </div>
+                            <div class="add-to-cart">
+                                <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ hàng</a></h4>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <!-- /product -->
+                <div class="clearfix visible-lg visible-md visible-sm visible-xs"></div>
+                <!-- /store products -->
+            </div>
+            <!-- /STORE -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
