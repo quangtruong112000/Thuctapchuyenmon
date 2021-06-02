@@ -49,6 +49,7 @@ namespace Model.Dao
                 {
                     user.Password = entity.Password;
                 }
+                user.GroupID = entity.GroupID;
                 user.Address = entity.Address;
                 user.Email = entity.Email;
                 user.Phone = entity.Phone;
@@ -124,6 +125,10 @@ namespace Model.Dao
                     }
                 }
             }
+        }
+        public List<UserGroup> ListAll()
+        {
+            return db.UserGroups.ToList();
         }
         public List<string> GetListCredential(string userName)
         {

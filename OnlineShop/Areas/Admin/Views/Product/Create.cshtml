@@ -10,22 +10,77 @@
 }
 @section jsFooter{
     <script>
-        $(document).ready(function () {
-            $('#btnSelectImage').on('click', function (e) {
-                e.preventDefault();
-                var finder = new CKFinder();
-                finder.selectActionFunction = function (url) {
-                    $('#txtImage').val(url)
-                };
-                finder.popup();
-            })
-            var editor = CKEDITOR.replace('txtContent', {
-                customConfig: '/Assets/admin/js/plugins/ckeditor/config.js',
+@*import { Alert } from "../../../../Assets/admin/vendor/bootstrap/js/bootstrap.bundle";   *@   
+        $(function () {
+            //đăng kí sự kiện click của btnUpload
+            $('#btnUpload').click(function () {
+                $('#Upload').trigger('click');
             });
-        })
+            //Bắt sự kiện change data của fileUpload
+            $('#Upload').change(function () {
+                //kiểm tra trình duyệt có hỗ trợ formdata
+                if (window.FormData !== undefined) {
+                    //Lấy dữ liệu trên fileUpload
+                    var fileUpload = $('#Upload').get(0);
+                    var files = fileUpload.files;
+                    //tao doi tuong formdata
+                    var formData = new FormData();
+                    //dua du lieu vao form
+                    formData.append('file', files[0]);
+                    $.ajax({
+                       
+                        type: 'POST',
+                        url: '/Admin/Product/ProcessUpload',
+                        contentType: false,
+                        processData: false,
+                        data: formData, 
+                        success: function (urlImage) {
+                            $('#pictureUpload').attr('src', urlImage);
+                            $('#Image').val(urlImage);
+                        },
+                        error: function (err) {
+                           @* Alert('Có lỗi khi upload:' + err.statusText);*@
+                        }
+                    })
+                }
+            });
+        });
+        $(function () {
+            //đăng kí sự kiện click của btnUpload
+            $('#btnUploadMore').click(function () {
+                $('#UploadMore').trigger('click');
+            });
+            //Bắt sự kiện change data của fileUpload
+            $('#UploadMore').change(function () {
+                //kiểm tra trình duyệt có hỗ trợ formdata
+                if (window.FormData !== undefined) {
+                    //Lấy dữ liệu trên fileUpload
+                    var fileUpload = $('#UploadMore').get(0);
+                    var files = fileUpload.files;
+                    //tao doi tuong formdata
+                    var formData = new FormData();
+                    //dua du lieu vao form
+                    formData.append('file', files[0]);
+                    $.ajax({
+
+                        type: 'POST',
+                        url: '/Admin/Product/ProcessUploadMore',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (urlImage) {
+                            $('#pictureUploadMore').attr('src', urlImage);
+                            $('#MoreImages').val(urlImage);
+                        },
+                        error: function (err) {
+                            @* Alert('Có lỗi khi upload:' + err.statusText);*@
+                        }
+                    })
+                }
+            });
+        });
 
     </script>
-
 }
 <div class="row">
     <div class="col-lg-7">
@@ -76,18 +131,25 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                            <a id="btnSelectImage" href="#">Chọn ảnh</a>
-                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                            <div class="form-inline">
+                                @Html.TextBoxFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                                <input type="file" id="Upload" hidden />
+                                <input type="button" id="btnUpload" value="..." class="btn-success" />
+                                <hr />
+                            </div>
+                            <img id="pictureUpload" width="250" />
                         </div>
                     </div>
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.MoreImages, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(model => model.MoreImages, new { htmlAttributes = new { @class = "form-control" } })
-                            <a id="btnSelectImage" href="#">Chọn ảnh</a>
-                            @Html.ValidationMessageFor(model => model.MoreImages, "", new { @class = "text-danger" })
+                            <div class="form-inline">
+                                @Html.TextBoxFor(model => model.MoreImages, new { htmlAttributes = new { @class = "form-control" } })
+                                <input type="file" id="UploadMore" hidden />
+                                <input type="button" id="btnUploadMore" value="..." class="btn-success" />
+                                <hr />
+                            </div>
+                            <img id="pictureUploadMore" width="250" />
                         </div>
                     </div>
 

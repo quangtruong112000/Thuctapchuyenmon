@@ -127,6 +127,7 @@ namespace OnlineShop.Controllers
                 var cart = (List<CartItem>)Session[CartSession];
                 var detailDao = new OrderDetailDao();
                 decimal total = 0;
+                long productId = 0;
                 foreach (var item in cart)
                 {
                     var orderDetail = new OrderDetail();
@@ -136,10 +137,13 @@ namespace OnlineShop.Controllers
                     orderDetail.Quantity = item.Quantity;
                     detailDao.Insert(orderDetail);
                     total += (item.Product.Price.GetValueOrDefault(0) * item.Quantity);
+                    productId = orderDetail.ProductID;
+
                 }
                 string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/client/template/neworder.html"));
 
                 content = content.Replace("{{CustomerName}}", shipName);
+                content = content.Replace("{{ProductId}}", productId.ToString("N0"));
                 content = content.Replace("{{Phone}}", mobile);
                 content = content.Replace("{{Email}}", email);
                 content = content.Replace("{{Address}}", address);

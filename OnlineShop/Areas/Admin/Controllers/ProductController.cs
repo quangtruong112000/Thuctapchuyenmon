@@ -97,5 +97,15 @@ namespace OnlineShop.Areas.Admin.Controllers
             var dao = new ProductCategoryDao();
             ViewBag.CategoryID = new SelectList(dao.ListAll(), "ID", "Name", selectedId);
         }
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            file.SaveAs(Server.MapPath("~/Assets/admin/img/" + file.FileName));
+            return "/Assets/admin/img/" + file.FileName;
+        }
+        public string ProcessUploadMore(HttpPostedFileBase file)
+        {
+            file.SaveAs(Server.MapPath("~/Assets/admin/img/" + file.FileName));
+            return "/Assets/admin/img/" + file.FileName;
+        }
     }
 }

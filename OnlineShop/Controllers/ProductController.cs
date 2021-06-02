@@ -27,7 +27,7 @@ namespace OnlineShop.Controllers
             {
                 data = data,
                 status = true
-            },JsonRequestBehavior.AllowGet);
+            }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Category(long cateId)
         {
@@ -36,15 +36,15 @@ namespace OnlineShop.Controllers
             var model = new ProductDao().ListByCategoryId(cateId);
             return View(model);
         }
-        /*public ActionResult Search(string keyword)
+        public ActionResult Search(string keyword, int page = 1, int pageSize = 1)
         {
             int totalRecord = 0;
             var model = new ProductDao().Search(keyword, ref totalRecord);
             ViewBag.Total = totalRecord;
+            ViewBag.Page = page;
             ViewBag.Keyword = keyword;
-
             return View(model);
-        }*/
+        }
         [OutputCache (Duration =int.MaxValue, VaryByParam = "id")]
         public ActionResult Detail(long id)
         {

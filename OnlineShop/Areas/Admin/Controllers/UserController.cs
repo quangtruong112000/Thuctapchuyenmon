@@ -26,6 +26,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            SetViewBag();
             return View();
         }
 
@@ -50,11 +51,13 @@ namespace OnlineShop.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Thêm user không thành công");
                 }
             }
+            SetViewBag();
             return View("Index");
         }
         public ActionResult Edit(int id)
         {
             var user = new UserDao().ViewDetail(id);
+            SetViewBag();
             return View(user);
         }
         [HttpPost]
@@ -68,8 +71,6 @@ namespace OnlineShop.Areas.Admin.Controllers
                     var encryptedMd5Pas = Encryptor.GetMD5(user.Password);
                     user.Password = encryptedMd5Pas;
                 }
-
-
                 var result = dao.Update(user);
                 if (result)
                 {
@@ -81,6 +82,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Cập nhật không thành công");
                 }
             }
+            SetViewBag();
             return View("Index");
         }
         [HttpDelete]
@@ -104,6 +106,11 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             Session[CommonConstants.USER_SESSION] = null;
             return Redirect("/admin/login/");
+        }
+        public void SetViewBag()
+        {
+            var dao = new UserDao();
+            ViewBag.GroupID = new SelectList(dao.ListAll(), "ID", "Name");
         }
     }
 }

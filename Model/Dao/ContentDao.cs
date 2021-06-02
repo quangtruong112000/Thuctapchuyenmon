@@ -175,5 +175,40 @@ namespace Model.Dao
                          });
             return model.ToList();
         }
+        public bool Update(Content entity)
+        {
+            try
+            {
+                var content = db.Contents.Find(entity.ID);
+                content.Name = entity.Name;
+                content.MetaTitle = entity.MetaTitle;
+                content.Image = entity.Image;
+                content.MetaTitle = entity.MetaTitle;
+                content.Description = entity.Description;
+                content.CategoryID = entity.CategoryID;
+                content.ModifiedBy = entity.ModifiedBy;
+                content.ModifiedDate = DateTime.Now;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public bool Delete(int id)
+        {
+            try
+            {
+                var content = db.Contents.Find(id);
+                db.Contents.Remove(content);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

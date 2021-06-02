@@ -35,14 +35,30 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
         
         [HttpPost]       
-        public ActionResult Edit(Content model)
+        public ActionResult Edit(Content content)
         {
             if (ModelState.IsValid)
             {
-
+                var dao = new ContentDao();
+                var result = dao.Update(content);
+                if (result)
+                {
+                    SetAlert("Sửa thành công", "success");
+                    return RedirectToAction("Index", "Content");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Cập nhật không thành công");
+                }
             }
             SetViewBag();
             return View();
+        }
+        public ActionResult Delete(int id)
+        {
+            new ContentDao().Delete(id);
+
+            return RedirectToAction("Index");
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -51,6 +67,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var sesstion = (UserLogin)Session[CommonConstants.USER_SESSION];
+                model.CreatedDate = DateTime.Now;
                 model.CreatedBy = sesstion.UserName;
                 new ContentDao().Create(model);
                 return RedirectToAction("Index","Content");
@@ -62,6 +79,11 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             var dao = new CategoryDao();
             ViewBag.CategoryID = new SelectList(dao.ListAll(), "ID", "Name", selectedId);
+        }
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            file.SaveAs(Server.MapPath("~/Assets/admin/img/" + file.FileName));
+            return "/Assets/admin/img/" + file.FileName;
         }
     }
 }

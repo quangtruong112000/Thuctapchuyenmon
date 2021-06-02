@@ -89,6 +89,7 @@ namespace Model.Dao
         {
             return db.Products.Find(id);
         }
+
         public long Insert(Product entity)
         {
             db.Products.Add(entity);
@@ -102,6 +103,8 @@ namespace Model.Dao
                 var product = db.Products.Find(entity.ID);
                 product.Name = entity.Name;
                 product.Code = entity.Code;
+                product.Image = entity.Image;
+                product.MoreImages = entity.MoreImages;
                 product.MetaTitle = entity.MetaTitle;
                 product.Description = entity.Description;
                 product.Price = entity.Price;
