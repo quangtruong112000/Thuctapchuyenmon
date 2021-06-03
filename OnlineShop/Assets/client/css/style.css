@@ -1014,21 +1014,22 @@ textarea.input {
   transform: translate(-50%, -5px);
 }
 
-.product .add-to-cart {
-  position: absolute;
-  left: 1px;
-  right: 1px;
-  bottom: 1px;
-  padding: 15px;
-  background: #1e1f29;
-  text-align: center;
-  -webkit-transform: translateY(0%);
-  -ms-transform: translateY(0%);
-  transform: translateY(0%);
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
-  z-index: 2;
-}
+    .product .add-to-cart {
+        position: absolute;
+        left: 16px;
+        right: 1px;
+        bottom: 1px;
+        padding: 15px;
+        width: 92%;
+        background: #1e1f29;
+        text-align: center;
+        -webkit-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        transform: translateY(0%);
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+        z-index: 2;
+    }
 
 .product:hover .add-to-cart {
   -webkit-transform: translateY(100%);

@@ -11,7 +11,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
-
 namespace OnlineShop.Controllers
 {
     public class UserController : Controller
@@ -87,6 +86,7 @@ namespace OnlineShop.Controllers
             }
             return Redirect("/");
         }
+        [HttpGet]
         public ActionResult Logout()
         {
             Session[CommonConstants.USER_SESSION] = null;

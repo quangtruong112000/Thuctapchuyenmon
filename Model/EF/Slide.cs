@@ -11,7 +11,7 @@ namespace Model.EF
     {
         public int ID { get; set; }
 
-        [StringLength(10)]
+        [StringLength(250)]
         public string Image { get; set; }
 
         [StringLength(10)]
@@ -33,6 +33,6 @@ namespace Model.EF
         [StringLength(50)]
         public string ModifiedBy { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
     }
 }

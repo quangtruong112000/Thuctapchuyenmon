@@ -19,12 +19,12 @@
     {
         <div class="image group">
             <div class="grid images_3_of_1">
-                <img src="@item.Image" alt="" />
+                <img src="@item.Image" alt="" width="300"/>
             </div>
             <div class="grid news_desc">
-                <h3><a href="/tin-tuc/@item.MetaTitle-@item.ID">@item.Name </a></h3>
-                <h4>Posted on @item.CreatedDate by <span><a href="#">@item.CreatedBy</a></span></h4>
-                @item.Description
+                <h3><span>Tên bài viết: </span><a href="/tin-tuc/@item.MetaTitle-@item.ID">@item.Name </a></h3>
+                <h4>Đăng bởi: @item.CreatedDate by <span><a href="#">@item.CreatedBy</a></span></h4>
+                <h4><span>Mô tả: </span>@item.Description</h4>
             </div>
         </div>
     }

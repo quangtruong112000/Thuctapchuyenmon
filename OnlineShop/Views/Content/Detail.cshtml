@@ -7,19 +7,18 @@
 <div class="content">
     <div class="content_top">
         <div class="heading">
-            <h3>@Model.Name</h3>
+            <h2><span>Tên bài viết: </span>@Model.Name</h2>
         </div>
-
         <div class="clear"></div>
     </div>
     <div class="section-group">
-        @Html.Raw(Model.Detail)
+        <h3>Chi tiết: @Html.Raw(Model.Detail)</h3>       
         <ul>
             @{
                 var tags = (List<Model.EF.Tag>)ViewBag.Tags;
                 foreach (var tag in tags)
                 {
-                    <li><a href="/tag/@tag.ID">@tag.Name</a></li>
+                    <li><h4><a href="/tag/@tag.ID"><span>Bài viết liên quan: </span>@tag.Name</a></h4></li>
                 }
             }
         </ul>

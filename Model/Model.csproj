@@ -57,9 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\AboutDao.cs" />
     <Compile Include="Dao\CategoryDao.cs" />
     <Compile Include="Dao\ContactDao.cs" />
     <Compile Include="Dao\ContentDao.cs" />
+    <Compile Include="Dao\FeedbackDao.cs" />
     <Compile Include="Dao\Footer.cs" />
     <Compile Include="Dao\MenuDao.cs" />
     <Compile Include="Dao\OrderDao.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="EF\User.cs" />
     <Compile Include="EF\UserGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\OrderViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

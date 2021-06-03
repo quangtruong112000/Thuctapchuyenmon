@@ -31,13 +31,6 @@
     <link type="text/css" rel="stylesheet" href="/Assets/client/css/style.css" />
     <link href="/Assets/client/css/slider.css" rel="stylesheet" />
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 <body>
     <!-- HEADER -->
@@ -47,7 +40,7 @@
         <!-- /TOP HEADER -->
         <!-- MAIN HEADER -->
         <div id="header">
-            
+
             <!-- container -->
             <div class="container">
                 <!-- row -->
@@ -75,18 +68,9 @@
                     <!-- ACCOUNT -->
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
-                            <!-- Wishlist -->
-                            <div>
-                                <a href="#">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Your Wishlist</span>
-                                    <div class="qty">2</div>
-                                </a>
-                            </div>
-                            <!-- /Wishlist -->
                             <!-- Cart -->
                             @{ Html.RenderAction("HeaderCart", "Home");}
-                            <!-- /Cart -->                           
+                            <!-- /Cart -->
                         </div>
                     </div>
                     <!-- /ACCOUNT -->
@@ -174,6 +158,9 @@
     <script src="/Assets/client/js/jquery.zoom.min.js"></script>
     <script src="/Assets/client/js/main.js"></script>
     <script src="/Assets/client/js/controller/baseController.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     @RenderSection("jsFooter", required: false)
 </body>
 </html>

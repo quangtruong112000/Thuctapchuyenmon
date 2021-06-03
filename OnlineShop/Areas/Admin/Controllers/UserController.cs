@@ -18,9 +18,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             var dao = new UserDao();
             var model = dao.ListAllPaging(searchString, page, pageSize);
-
             ViewBag.SearchString = searchString;
-
             return View(model);
         }
         [HttpGet]

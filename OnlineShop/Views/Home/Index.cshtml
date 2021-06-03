@@ -27,11 +27,23 @@
                         <input type="radio" name="radio-btn" id="radio2">
                         <input type="radio" name="radio-btn" id="radio3">
                         <input type="radio" name="radio-btn" id="radio4">
+                        @{ var count = true; }
+
                         @foreach (var item in slides)
                         {
-                            <div class="slide first ">
-                                <img src="@item.Image" alt="">
-                            </div>
+                            if (count)
+                            {
+                                <div class="slide first">
+                                    <img src="@item.Image" alt="">
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="slide">
+                                    <img src="@item.Image" alt="">
+                                </div>
+                            }
+                            count = false;
                         }
                         <div class="navigation-auto">
                             <div class="auto-btn1"></div>
@@ -92,7 +104,7 @@
                                     var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
                                     <div class="product">
                                         <div class="product-img">
-                                            <a href="@url"><img src="@item.Image" alt="@item.Name"></a>
+                                            <a href="@url"><img src="@item.Image" class="w-100" alt="@item.Name"></a>
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">@item.Name</a></h3>
@@ -152,7 +164,7 @@
                                     var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
                                     <div class="product">
                                         <div class="product-img">
-                                            <a href="@url"><img src="@item.Image" alt="@item.Name"></a>
+                                            <a href="@url"><img src="@item.Image" class="w-100" alt="@item.Name"></a>
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">@item.Name</a></h3>

@@ -1,12 +1,12 @@
 ﻿@model List<Model.EF.ProductCategory>
 
 <div class="categories">
-    <h2 data-toggle="collapse" data-target="#demo">Danh mục sản phẩm</h2>
+    <h2 data-toggle="collapse" data-target="#demo">Thương hiệu</h2>
     <div class="categorie collapse" id="demo">
         <ul>
             @foreach (var item in Model)
             {
-                <Li><a href="/san-pham/@item.MetaTitle-@item.ID"><img src="">@item.Name</a></Li>
+                <Li><a href="/san-pham/@item.MetaTitle-@item.ID"><img src=""><span style="font-size:large">@item.Name</span></a></Li>
             }
         </ul>
     </div>

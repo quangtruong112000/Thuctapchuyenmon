@@ -150,13 +150,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AboutController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CartController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FeedbackController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderDetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SlideController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
@@ -177,6 +183,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProvinceModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.6.1.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\UserLogin.cs" />
   </ItemGroup>
@@ -189,8 +196,12 @@
     <Content Include="Assets\admin\img\undraw_profile_2.svg" />
     <Content Include="Assets\admin\img\undraw_profile_3.svg" />
     <Content Include="Assets\admin\img\undraw_rocket.svg" />
+    <Content Include="Assets\admin\js\controller\aboutController.js" />
+    <Content Include="Assets\admin\js\controller\cartController.js" />
+    <Content Include="Assets\admin\js\controller\feedbackController.js" />
     <Content Include="Assets\admin\js\controller\productcategoryController.js" />
     <Content Include="Assets\admin\js\controller\productController.js" />
+    <Content Include="Assets\admin\js\controller\slideController.js" />
     <Content Include="Assets\admin\js\controller\userController.js" />
     <Content Include="Assets\admin\js\demo\chart-area-demo.js" />
     <Content Include="Assets\admin\js\demo\chart-bar-demo.js" />
@@ -2135,6 +2146,18 @@
     <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Cart\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Slide\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Slide\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Slide\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetail\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2163,7 +2186,6 @@
     <Content Include="Views\Shared\ProductCategory.cshtml" />
     <Content Include="Views\Product\Category.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
-    <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Shared\TopMenu.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\HeaderCart.cshtml" />
@@ -2177,6 +2199,7 @@
     <Content Include="Views\Content\Detail.cshtml" />
     <Content Include="Views\Content\Tag.cshtml" />
     <Content Include="Views\Product\Store.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

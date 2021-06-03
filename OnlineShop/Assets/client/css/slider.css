@@ -4,8 +4,12 @@
     height: 100vh;
     align-items: center;
     justify-content: center;
+    background: #ebebeb;
 }
 
+.w-100{
+    max-width: 100% !important;
+}
 .slider {
     width: 680px;
     height: 500px;
