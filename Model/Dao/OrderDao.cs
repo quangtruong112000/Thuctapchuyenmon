@@ -52,9 +52,9 @@ namespace Model.Dao
                              Quantity = x.Quantity,
                              Price = x.Price
                          });
-            model.OrderByDescending(x=>x.CreatedDate);
+            model.OrderByDescending(x => x.CreatedDate);
             return model.ToList();
-        }       
+        }
         public bool ChangeStatus(long id)
         {
             var order = db.Orders.Find(id);
@@ -79,7 +79,7 @@ namespace Model.Dao
             IQueryable<Order> model = db.Orders;
             if (!string.IsNullOrEmpty(searchString))
             {
-                model = model.Where(x => x.ShipName.Contains(searchString) || x.ShipAddress.Contains(searchString) || x.ShipMobile.Contains(searchString));
+                model = model.Where(x => x.ShipName.Contains(searchString) || x.ShipAddress.Contains(searchString) || x.ShipMobile.Contains(searchString) || x.Status.ToString().Contains(searchString));
             }
             return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
         }
@@ -105,7 +105,7 @@ namespace Model.Dao
         public bool Delete(long id)
         {
             try
-            {            
+            {
                 var order = db.Orders.Find(id);
                 var orderdetail = db.OrderDetails.Where(x => x.OrderID == id).ToList();
                 foreach (var item in orderdetail)
@@ -114,13 +114,74 @@ namespace Model.Dao
                     db.SaveChanges();
                 }
                 db.Orders.Remove(order);
-                db.SaveChanges();               
+                db.SaveChanges();
                 return true;
             }
             catch (Exception e)
             {
                 return false;
             }
+        }
+        public int counttask()
+        {
+            var count = (from a in db.Orders where a.Status == false select a).Count();
+            return count;
+        }
+        public decimal countrevenue()
+        {
+            var model = (from a in db.OrderDetails
+                         join b in db.Orders on a.OrderID equals b.ID
+                         join c in db.Products on a.ProductID equals c.ID
+                         select new StatisticalModel()
+                         {
+                             date = b.CreatedDate,
+                             revenue = a.Price * a.Quantity,
+                             benefit = a.Quantity * (a.Price - c.OriginalPrice),
+                             status = b.Status
+                         }).AsEnumerable().Select(x => new StatisticalModel()
+                         {
+                             date = x.date,
+                             revenue = x.revenue,
+                             benefit = x.benefit,
+                             status = x.status
+                         });
+            decimal? totalrevenue = 0;
+            foreach (var item in model.ToList())
+            {
+                if (item.status == true)
+                {
+                    totalrevenue += item.revenue;                
+                }
+            }
+            return (decimal)totalrevenue;
+        }
+        public decimal countbenefit()
+        {
+            var model = (from a in db.OrderDetails
+                         join b in db.Orders on a.OrderID equals b.ID
+                         join c in db.Products on a.ProductID equals c.ID
+                         select new StatisticalModel()
+                         {
+                             date = b.CreatedDate,
+                             revenue = a.Price * a.Quantity,
+                             benefit = a.Quantity * (a.Price - c.OriginalPrice),
+                             status = b.Status
+                         }).AsEnumerable().Select(x => new StatisticalModel()
+                         {
+                             date = x.date,
+                             revenue = x.revenue,
+                             benefit = x.benefit,
+                             status = x.status
+                         });
+            decimal? totalbenefit = 0;
+            foreach (var item in model.ToList())
+            {
+                if (item.status == true)
+                {
+                    totalbenefit += item.benefit;
+                }
+            }
+            return (decimal)totalbenefit;
         }
     }
 }

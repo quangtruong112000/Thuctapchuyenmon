@@ -12,6 +12,10 @@ namespace OnlineShop.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
+            ViewBag.countbenefit = new OrderDao().countbenefit();
+            ViewBag.countrevenue = new OrderDao().countrevenue();
+            ViewBag.counttask = new OrderDao().counttask();
+            ViewBag.countfeedback = new FeedbackDao().countfeedback();
             ViewBag.listSta = new StatisticalDao().listStatistical();
             return View();
         }
