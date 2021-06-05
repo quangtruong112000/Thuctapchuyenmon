@@ -18,11 +18,9 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
-        
-        public ActionResult Edit(long id, long productId)
+        public ActionResult Edit(long id)
         {
-            var dao = new OrderDetailDao();
-            var orderDetail = dao.GetByID(id, productId);
+            var orderDetail = new OrderDetailDao().GetByID(id);
             return View(orderDetail);
         }
         [HttpPost]
@@ -35,7 +33,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 if (result)
                 {
                     SetAlert("Sửa thành công", "success");
-                    return RedirectToAction("Index", "Slide");
+                    return RedirectToAction("Index", "OrderDetail");
                 }
                 else
                 {
@@ -45,9 +43,9 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View("Index");
         }
         [HttpDelete]
-        public ActionResult Delete(long id,long productId)
+        public ActionResult Delete(long id)
         {
-            new OrderDetailDao().Delete(id,productId);
+            new OrderDetailDao().Delete(id);
 
             return RedirectToAction("Index");
         }       

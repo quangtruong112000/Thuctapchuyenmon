@@ -19,6 +19,7 @@ namespace Model.Dao
         }
         public long Insert(User entity)
         {
+            entity.GroupID = "MEMBER";
             db.Users.Add(entity);
             db.SaveChanges();
             return entity.ID;
@@ -38,7 +39,6 @@ namespace Model.Dao
             }
             
         }
-
         public bool Update(User entity)
         {
             try

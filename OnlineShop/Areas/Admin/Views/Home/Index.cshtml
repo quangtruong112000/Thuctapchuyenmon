@@ -2,14 +2,16 @@
 @{
     ViewBag.Title = "Trang chủ";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+    var listSta = (List<Model.ViewModel.StatisticalModel>)ViewBag.listSta;
+    var listfeedback = (List<Model.EF.Feedback>)ViewBag.listfeedback;
 }
+
 @section header{
     Trang chủ
-} 
+}
 <div class="container-fluid">
     <!-- Content Row -->
-    <div class="row">
-
+    <div class="row">       
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
@@ -85,7 +87,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Pending Requests
+                                Phản hồi
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                         </div>

@@ -34,8 +34,10 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Mã sản phẩm</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Giá</th>
+                                <th>Giá nhập</th>
+                                <th>Giá bán</th>
                                 <th>Hình ảnh</th>
                                 <th>Trạng thái</th>
                                 <th>#</th>
@@ -44,23 +46,24 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr id="row_@item.ID">
-
-                                    <td>@item.Name</td>
-                                    <td>@(item.Price.HasValue? item.Price.Value.ToString("N0"):"Liên hệ")</td>
-                                    <td><img src="@item.Image" width="100" /></td>
-                                    <td><a href="#" class="btn-active" data-id="@item.ID">@(item.Status? "Còn hàng":"Hết hàng")</a></td>
-                                    <td>
-                                        <a href="/Admin/Product/Edit/@item.ID">Sửa</a>
-                                        |
-                                        @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID }, new AjaxOptions
-                                        {
-                                            Confirm = "Bạn có muốn xóa bản ghi này?",
-                                            OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                            HttpMethod = "Delete"
-                                        })
-                                    </td>
-                                </tr>
+                            <tr id="row_@item.ID">
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                <td>@(item.OriginalPrice.HasValue? item.OriginalPrice.Value.ToString("N0"):"Liên hệ")</td>
+                                <td>@(item.Price.HasValue? item.Price.Value.ToString("N0"):"Liên hệ")</td>
+                                <td><img src="@item.Image" width="100" /></td>
+                                <td><a href="#" class="btn-active" data-id="@item.ID">@(item.Status? "Còn hàng":"Hết hàng")</a></td>
+                                <td>
+                                    <a href="/Admin/Product/Edit/@item.ID">Sửa</a>
+                                    |
+                                    @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID }, new AjaxOptions
+                                    {
+                                        Confirm = "Bạn có muốn xóa bản ghi này?",
+                                        OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                        HttpMethod = "Delete"
+                                    })
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

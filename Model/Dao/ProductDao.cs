@@ -92,6 +92,14 @@ namespace Model.Dao
 
         public long Insert(Product entity)
         {
+            if (entity.Quantity > 0)
+            {
+                entity.Status = true;
+            }
+            else
+            {
+                entity.Status = false;
+            }
             entity.CreatedDate = DateTime.Now;
             db.Products.Add(entity);
             db.SaveChanges();
@@ -108,10 +116,13 @@ namespace Model.Dao
                 product.MoreImages = entity.MoreImages;
                 product.MetaTitle = entity.MetaTitle;
                 product.Description = entity.Description;
+                product.OriginalPrice = entity.OriginalPrice;
                 product.Price = entity.Price;
+                product.Quantity = entity.Quantity;
                 product.CategoryID = entity.CategoryID;
                 product.ModifiedBy = entity.ModifiedBy;
                 product.ModifiedDate = DateTime.Now;
+                product.TopHot = entity.TopHot;
                 db.SaveChanges();
                 return true;
             }

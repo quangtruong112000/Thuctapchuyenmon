@@ -187,3 +187,5 @@ C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\System.Data.SQLite.dll
 C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\System.Data.SQLite.xml
 C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\Facebook.dll
 C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\Facebook.xml
+C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\EPPlus.dll
+C:\Users\Admin\Desktop\Thuctapchuyenmon\OnlineShop\bin\EPPlus.xml

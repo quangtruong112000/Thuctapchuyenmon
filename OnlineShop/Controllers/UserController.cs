@@ -15,6 +15,7 @@ namespace OnlineShop.Controllers
 {
     public class UserController : Controller
     {
+        public const string USER_SESSION = "USER_SESSION";
         private Uri RedirectUri
         {
             get
@@ -81,7 +82,7 @@ namespace OnlineShop.Controllers
                     var userSession = new UserLogin();
                     userSession.UserName = user.UserName;
                     userSession.UserID = user.ID;
-                    Session.Add(CommonConstants.USER_SESSION, userSession);                   
+                    Session.Add(CommonConstants.USER_SESSION, userSession);
                 }
             }
             return Redirect("/");
@@ -98,7 +99,7 @@ namespace OnlineShop.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
-                var result = dao.Login(model.UserName, Encryptor.GetMD5(model.Password));
+                var result = dao.Login(model.UserName, Encryptor.GetMD5(model.Password), true);
                 if (result == 1)
                 {
                     var user = dao.GetById(model.UserName);
@@ -114,18 +115,22 @@ namespace OnlineShop.Controllers
                 }
                 else if (result == -1)
                 {
-                    ModelState.AddModelError("", "Tài khoản đang bị khoá.");
+                    ModelState.AddModelError("", "Tài khoản đang bị khóa.");
                 }
                 else if (result == -2)
                 {
                     ModelState.AddModelError("", "Mật khẩu không đúng.");
                 }
+                else if (result == -3)
+                {
+                    ModelState.AddModelError("", "Tài khoản của bạn không có quyền đăng nhập.");
+                }
                 else
                 {
-                    ModelState.AddModelError("", "đăng nhập không đúng.");
+                    ModelState.AddModelError("", "Đăng nhập không đúng!");
                 }
             }
-            return View(model);
+            return View("/");
         }
         [HttpPost]
         [CaptchaValidation("CaptchaCode","registerCapcha","Mã xác nhận không đúng")]
