@@ -55,4 +55,4 @@ Phần 2 :
 
 Chưa hoàn thành:
 
-22.Upload website lên host.
+21.Upload website lên host.
