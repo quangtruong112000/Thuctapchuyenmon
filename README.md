@@ -12,8 +12,8 @@ Phần 1: Công nghê sử dụng:
 Phần 2 : 
 Đã hoàn thành:
 
-1.Xây dựng Cơ sở dữ liệu quản lí bán hàng 
-2.Chức năng đăng nhập admin
+1.Xây dựng Cơ sở dữ liệu quản lí bán hàng.
+2.Chức năng đăng nhập admin.
 3.Thêm, sửa, xóa và tìm kiếm tài khoản admin
 4.Hiển thị thông tin chi tiết sản phẩm và sản phẩm liên quan
 5.Hiển thị tin tức và các bài viết liên quan đến tin tức đó.
