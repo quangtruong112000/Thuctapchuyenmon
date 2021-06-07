@@ -1,4 +1,4 @@
-namespace Model.EF
+﻿namespace Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -12,11 +12,11 @@ namespace Model.EF
         public long ID { get; set; }
 
         [StringLength(250)]
+        [Display(Name="Tên thương hiệu")]
         public string Name { get; set; }
 
         [StringLength(250)]
         public string MetaTitle { get; set; }
-
         public long? ParentID { get; set; }
 
         public int? DisplayOrder { get; set; }
@@ -39,7 +39,7 @@ namespace Model.EF
 
         [StringLength(250)]
         public string MetaDescriptions { get; set; }
-
+        [Display(Name = "Trạng thái")]
         public bool Status { get; set; }
 
         public bool? ShowOnHome { get; set; }

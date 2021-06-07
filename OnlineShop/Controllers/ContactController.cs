@@ -37,7 +37,7 @@ namespace OnlineShop.Controllers
             noidung = noidung.Replace("{{Content}}", content);
             var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
             //new MailHelper().SendMail(email, "Đơn hàng mới từ OnlineShop", noidung);
-            new MailHelper().SendMail(toEmail, "Đơn hàng mới từ OnlineShop", noidung);
+            new MailHelper().SendMail(toEmail, "Phản hồi từ khách hàng:", noidung);
             if (id > 0)
             {
                 return Json(new

@@ -13,14 +13,18 @@
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Thời gian', 'Doanh thu', 'Lợi nhuận'],
-                ['2004', 5000, 400],
-                ['2005', 1170, 460],
-                ['2006', 660, 1120],
-                ['2007', 1030, 540]
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Thời gian');
+            data.addColumn('number', 'Doanh thu');
+            data.addColumn('number', 'Lợi nhuận');
+            data.addRows([        
+                ['1-2021', 100000000, 30000000],
+                ['2-2021', 90000000, 27000000],
+                ['3-2021', 110000000, 35000000],
+                ['4-2021', 80000000, 19000000],
+                ['5-2021', 50000000, 10000000],
+                ['6-2021', 150000000, 45000000]
             ]);
-
             var options = {
                 title: 'Biểu đồ thống kê',
                 curveType: 'function',
@@ -82,7 +86,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Đơn hàng chưa hoàn thành
+                                <a href="/Admin/Order/Index/">Đơn hàng chưa hoàn thành</a>
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
@@ -105,7 +109,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Chưa phản hồi
+                                <a href="/Admin/Feedback/Index/">Chưa phản hồi</a>
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.countfeedback</div>
                         </div>
@@ -123,10 +127,10 @@
     <div class="row">
 
         <!-- Area Chart -->
-        <div class="col-xl-12">
+        <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                @*<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Biểu đồ thống kê doanh thu và lợi nhuận</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -142,7 +146,7 @@
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-area">
@@ -153,10 +157,10 @@
         </div>
 
         <!-- Pie Chart -->
-        <!--<div class="col-xl-4 col-lg-5">
-            <div class="card shadow mb-4">-->
-        <!-- Card Header - Dropdown -->
-        <!--<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        @*<div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
+         Card Header - Dropdown 
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Lợi nhuận</h6>
             <div class="dropdown no-arrow">
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -172,9 +176,9 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </div>
-        </div>-->
-        <!-- Card Body -->
-        <!--<div class="card-body">
+        </div>
+         Card Body 
+        <div class="card-body">
                     <div class="chart-pie pt-4 pb-2">
                         <canvas id="myPieChart"></canvas>
                     </div>
@@ -191,6 +195,6 @@
                     </div>
                 </div>
             </div>
-        </div>-->
+        </div>*@
     </div>
 </div>
