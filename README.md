@@ -10,6 +10,7 @@ Phần 1: Công nghê sử dụng:
 - Visual Studio 2019
 -  SQL Server
 - ASP.Net MVC
+
 Phần 2 : 
 Đã hoàn thành:
 
