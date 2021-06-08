@@ -53,7 +53,7 @@ namespace Model.Dao
                 user.Address = entity.Address;
                 user.Email = entity.Email;
                 user.Phone = entity.Phone;
-                user.ModifiedBy = entity.ModifiedBy;
+                user.ModifiedBy = entity.ModifiedBy;               
                 user.ModifiedDate = DateTime.Now;
                 db.SaveChanges();
                 return true;

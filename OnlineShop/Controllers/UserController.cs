@@ -155,6 +155,8 @@ namespace OnlineShop.Controllers
                 user.Email = model.Email;
                 user.Address = model.Address;
                 user.CreatedDate = DateTime.Now;
+                user.DistrictID = int.Parse(model.DistrictID);
+                user.ProvinceID = int.Parse(model.ProvinceID);
                 user.Status = true;
                 if (!string.IsNullOrEmpty(model.DistrictID))
                 {

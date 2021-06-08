@@ -41,7 +41,6 @@
         public string MetaDescriptions { get; set; }
         [Display(Name = "Trạng thái")]
         public bool Status { get; set; }
-
         public bool? ShowOnHome { get; set; }
     }
 }
