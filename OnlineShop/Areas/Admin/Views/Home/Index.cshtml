@@ -17,13 +17,9 @@
             data.addColumn('string', 'Thời gian');
             data.addColumn('number', 'Doanh thu');
             data.addColumn('number', 'Lợi nhuận');
-            data.addRows([        
-                ['1-2021', 100000000, 30000000],
-                ['2-2021', 90000000, 27000000],
-                ['3-2021', 110000000, 35000000],
-                ['4-2021', 80000000, 19000000],
-                ['5-2021', 50000000, 10000000],
-                ['6-2021', 150000000, 45000000]
+            data.addRows([
+                ['5-2021', @ViewBag.revenue5, @ViewBag.benefit5],
+                ['6-2021', @ViewBag.revenue6, @ViewBag.benefit6]
             ]);
             var options = {
                 title: 'Biểu đồ thống kê',

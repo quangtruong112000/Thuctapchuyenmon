@@ -41,24 +41,47 @@
         </div>
         <div class="row">
             <div class="col-md-6">
+                @{ var session = (UserLogin)Session[OnlineShop.Common.CommonConstants.USER_SESSION]; }
                 @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
                 {
-                    <div class="form-group">
-                        <label>Người nhận: </label>
-                        <input name="shipName" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label>Điện thoại: </label>
-                        <input name="mobile" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label>Địa chỉ: </label>
-                        <input name="address" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label>Email: </label>
-                        <input name="email" class="form-control" />
-                    </div>
+                    if (session == null)
+                    {
+                        <div class="form-group">
+                            <label>Người nhận: </label>
+                            <input name="shipName" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Điện thoại: </label>
+                            <input name="mobile" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ: </label>
+                            <input name="address" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Email: </label>
+                            <input name="email" class="form-control" type="email" />
+                        </div>
+                    }
+                    else
+                    {
+            <div class="form-group">
+                <label>Người nhận:</label>
+                <input name="shipName" class="form-control" type="hidden" value="@session.Name" />@session.Name
+            </div>
+            <div class="form-group">
+                <label>Điện thoại: </label>
+                <input name="mobile" class="form-control" type="hidden" value="@session.Phone" />@session.Phone
+            </div>
+            <div class="form-group">
+                <label>Địa chỉ: </label>
+                <input name="address" class="form-control" type="hidden" value="@session.Address" />@session.Address
+            </div>
+            <div class="form-group">
+                <label>Email: </label>
+                <input name="email" class="form-control" type="hidden" value="@session.Email" />@session.Email
+            </div>
+                    }                   
                     <button type="submit" class="btn">Gửi đơn hàng</button>
                 }
             </div>

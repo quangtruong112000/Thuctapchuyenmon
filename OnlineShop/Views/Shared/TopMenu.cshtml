@@ -13,7 +13,7 @@
             <ul class="header-links pull-right">
                 @foreach (var item in Model)
                 {
-                    <li><a href="@item.Link" target="@item.Target">@item.Text</a></li>
+                    <li><a href="@item.Link" >@item.Text</a></li>
                 }                              
 
             </ul>
@@ -21,7 +21,7 @@
         else
         {
             <ul class="header-links pull-right">
-                <li><a>Xin chào: @session.UserName</a></li>
+                <li><a>Xin chào: @session.Name</a></li>
                 <li><a>@Html.ActionLink("Đăng xuất", "Logout", "User")</a></li>
             </ul>
         }

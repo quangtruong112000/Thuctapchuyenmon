@@ -17,6 +17,10 @@ namespace OnlineShop.Areas.Admin.Controllers
             ViewBag.counttask = new OrderDao().counttask();
             ViewBag.countfeedback = new FeedbackDao().countfeedback();
             ViewBag.listSta = new StatisticalDao().listStatistical();
+            ViewBag.revenue5 = new StatisticalDao().revenue5();
+            ViewBag.revenue6 = new StatisticalDao().revenue6();
+            ViewBag.benefit5 = new StatisticalDao().benefit5();
+            ViewBag.benefit6 = new StatisticalDao().benefit6();
             return View();
         }
     }

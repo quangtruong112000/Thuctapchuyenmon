@@ -37,7 +37,7 @@ namespace Model.Dao
             {
                 return user.ID;
             }
-            
+
         }
         public bool Update(User entity)
         {
@@ -53,15 +53,15 @@ namespace Model.Dao
                 user.Address = entity.Address;
                 user.Email = entity.Email;
                 user.Phone = entity.Phone;
-                user.ModifiedBy = entity.ModifiedBy;               
+                user.ModifiedBy = entity.ModifiedBy;
                 user.ModifiedDate = DateTime.Now;
                 db.SaveChanges();
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return false;
-            }            
+            }
         }
         public IEnumerable<User> ListAllPaging(string searchString, int page, int pageSize)
         {
@@ -70,8 +70,8 @@ namespace Model.Dao
             {
                 model = model.Where(x => x.UserName.Contains(searchString) || x.Name.Contains(searchString));
             }
-            return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page,pageSize);
-        } 
+            return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
+        }
         public User GetById(string userName)
         {
             return db.Users.SingleOrDefault(x => x.UserName == userName);
@@ -126,6 +126,26 @@ namespace Model.Dao
                 }
             }
         }
+        public int LoginForCus(string userName, string passWord)
+        {
+            var result = db.Users.SingleOrDefault(x => x.UserName == userName);
+            if (result == null)
+            {
+                return  0;
+            }
+            else
+            {
+                if (result.Password == passWord)
+                {
+                    if (result.Status == true)
+                    {
+                        return 1;
+                    }
+                    else return -1;
+                }
+                else return -2;
+            }
+        }
         public List<UserGroup> ListAll()
         {
             return db.UserGroups.ToList();
@@ -165,10 +185,10 @@ namespace Model.Dao
                 db.SaveChanges();
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return false;
-            }         
+            }
         }
         public bool ckeckUserName(string userName)
         {
