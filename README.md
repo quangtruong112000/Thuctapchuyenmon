@@ -54,6 +54,8 @@ Phần 2 :
 
 20.Xuất file Excel báo cáo doanh thu.
 
+21.Upload website lên host.
+
 Chưa hoàn thành:
 
-21.Upload website lên host.
+22.Viết báo cáo
