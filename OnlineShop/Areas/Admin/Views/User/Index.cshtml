@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Model.EF.User>
+﻿@model PagedList.IPagedList<Model.EF.Ad>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Quản lí người dùng";
@@ -36,7 +36,6 @@
                             <tr>
                                 <th>Tài khoản</th>
                                 <th>Tên</th>
-                                <th>Email</th>
                                 <th>Trạng thái</th>
                                 <th>#</th>
                             </tr>
@@ -48,7 +47,6 @@
 
                                     <td>@item.UserName</td>
                                     <td>@item.Name</td>
-                                    <td>@item.Email</td>
                                     <td><a href="#" class="btn-active" data-id="@item.ID">@(item.Status? "Kích hoạt":"Khóa")</a></td>
                                     <td>
                                         <a href="/Admin/User/Edit/@item.ID">Sửa</a>

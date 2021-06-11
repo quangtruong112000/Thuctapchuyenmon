@@ -80,7 +80,7 @@ namespace Model.Dao
         {
             return db.Users.Find(id);
         }
-        public int Login(string userName, string passWord, bool isLoginAdmin = false)
+        /*public int Login(string userName, string passWord, bool isLoginAdmin = false)
         {
             var result = db.Users.SingleOrDefault(x => x.UserName == userName);
             if (result == null)
@@ -125,7 +125,7 @@ namespace Model.Dao
                     }
                 }
             }
-        }
+        }*/
         public int LoginForCus(string userName, string passWord)
         {
             var result = db.Users.SingleOrDefault(x => x.UserName == userName);
@@ -150,7 +150,7 @@ namespace Model.Dao
         {
             return db.UserGroups.ToList();
         }
-        public List<string> GetListCredential(string userName)
+        /*public List<string> GetListCredential(string userName)
         {
             var user = db.Users.Single(x => x.UserName == userName);
             var data = (from a in db.Credentials
@@ -168,7 +168,7 @@ namespace Model.Dao
                         });
             return data.Select(x => x.RoleID).ToList();
 
-        }
+        }*/
         public bool ChangeStatus(long id)
         {
             var user = db.Users.Find(id);

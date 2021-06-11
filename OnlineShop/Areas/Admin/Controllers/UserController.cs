@@ -16,7 +16,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         // GET: Admin/User
         public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
-            var dao = new UserDao();
+            var dao = new AdminDao();
             var model = dao.ListAllPaging(searchString, page, pageSize);
             ViewBag.SearchString = searchString;
             return View(model);
@@ -29,47 +29,53 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(User user)
+        public ActionResult Create(Ad admin)
         {
             if (ModelState.IsValid)
             {
-                var dao = new UserDao();
-
-                var encryptedMd5Pas = Encryptor.GetMD5(user.Password);
-                user.Password = encryptedMd5Pas;
-
-                long id = dao.Insert(user);
-                if (id > 0)
+                var dao = new AdminDao();
+                if (dao.ckeckUserName(admin.UserName))
                 {
-                    SetAlert("Thêm user thành công", "success");
-                    return RedirectToAction("Index", "User");
+                    ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
+                    return View("Create");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Thêm user không thành công");
-                }
+                    var encryptedMd5Pas = Encryptor.GetMD5(admin.Password);
+                    admin.Password = encryptedMd5Pas;
+                    long id = dao.Insert(admin);
+                    if (id > 0)
+                    {
+                        SetAlert("Thêm thành công", "success");
+                        return RedirectToAction("Index", "User");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Thêm không thành công");
+                    }
+                }             
             }
             SetViewBag();
-            return View("Index");
+            return View("Create");
         }
         public ActionResult Edit(int id)
         {
-            var user = new UserDao().ViewDetail(id);
+            var admin = new AdminDao().ViewDetail(id);
             SetViewBag();
-            return View(user);
+            return View(admin);
         }
         [HttpPost]
-        public ActionResult Edit(User user)
+        public ActionResult Edit(Ad admin)
         {
             if (ModelState.IsValid)
             {
-                var dao = new UserDao();
-                if (!string.IsNullOrEmpty(user.Password))
+                var dao = new AdminDao();
+                if (!string.IsNullOrEmpty(admin.Password))
                 {
-                    var encryptedMd5Pas = Encryptor.GetMD5(user.Password);
-                    user.Password = encryptedMd5Pas;
+                    var encryptedMd5Pas = Encryptor.GetMD5(admin.Password);
+                    admin.Password = encryptedMd5Pas;
                 }
-                var result = dao.Update(user);
+                var result = dao.Update(admin);
                 if (result)
                 {
                     SetAlert("Sửa thành công", "success");
@@ -86,7 +92,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            new UserDao().Delete(id);
+            new AdminDao().Delete(id);
 
             return RedirectToAction("Index");
         }
@@ -94,7 +100,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HttpPost]
         public JsonResult ChangeStatus(long id)
         {
-            var result = new UserDao().ChangeStatus(id);
+            var result = new AdminDao().ChangeStatus(id);
             return Json(new
             {
                 status = result
@@ -102,12 +108,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
         public ActionResult Logout()
         {
-            Session[CommonConstants.USER_SESSION] = null;
+            Session[CommonConstants.ADMIN_SESSION] = null;
             return Redirect("/admin/login/");
         }
         public void SetViewBag()
         {
-            var dao = new UserDao();
+            var dao = new AdminDao();
             ViewBag.GroupID = new SelectList(dao.ListAll(), "ID", "Name");
         }
     }

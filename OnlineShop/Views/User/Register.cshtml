@@ -21,7 +21,7 @@
             <h4>Đăng ký thành viên</h4>
             <hr />
             <div class="form-group">
-                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @if (ViewBag.Success != null)
                 {
                     <div class="alert alert-success">@ViewBag.Success</div>
@@ -71,7 +71,7 @@
                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", @type = "email" })
                 </div>
             </div>
 

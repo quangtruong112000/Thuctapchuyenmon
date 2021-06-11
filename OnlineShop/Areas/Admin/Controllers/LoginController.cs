@@ -20,18 +20,19 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var dao = new UserDao();
-                var result = dao.Login(model.UserName, Encryptor.GetMD5(model.Password),true);
+                var dao = new AdminDao();
+                var result = dao.Login(model.UserName, Encryptor.GetMD5(model.Password));
                 if (result == 1)
                 {
-                    var user = dao.GetById(model.UserName);
-                    var userSession = new UserLogin();
-                    userSession.UserName = user.UserName;
-                    userSession.UserID = user.ID;
-                    userSession.GroupID = user.GroupID;
+                    var admin = dao.GetById(model.UserName);
+                    var adminSesstion = new UserLogin();
+                    adminSesstion.UserName = admin.UserName;
+                    adminSesstion.UserID = admin.ID;
+                    adminSesstion.GroupID = admin.GroupID;
+                    adminSesstion.Name = admin.Name;
                     var listCredentials = dao.GetListCredential(model.UserName);
-                    Session.Add(CommonConstants.USER_SESSION, listCredentials);
-                    Session.Add(CommonConstants.USER_SESSION, userSession);
+                    Session.Add(CommonConstants.ADMIN_SESSION, listCredentials);
+                    Session.Add(CommonConstants.ADMIN_SESSION, adminSesstion);
                     return RedirectToAction("Index", "Home");
                 }
                 else if (result == 0)

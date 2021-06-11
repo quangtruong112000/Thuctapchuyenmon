@@ -226,7 +226,7 @@ namespace Model.Dao
             worksheet.Cells[listItems.Count + 4, 3].Value = "Tổng lợi nhuận :";
             worksheet.Cells[listItems.Count + 4, 4].Formula = "SUM(C2:C" + (listItems.Count + 1) + ")";          
         }
-        public int  revenue5()
+        public decimal revenue5()
         {
             var model = (from a in db.OrderDetails
                          join b in db.Orders on a.OrderID equals b.ID
@@ -244,34 +244,20 @@ namespace Model.Dao
                              benefit = x.benefit,
                              status = x.status
                          });
-            var model1 = new List<StatisticalModel>();
-            var revenue5 = 0;
+            decimal? revenue5 = 0;
             foreach (var item in model.ToList())
             {
-                int cout = 0;
                 if (item.status == true)
                 {
-                    foreach (var item1 in model1)
+                    if (item.date.Value.Month == 5)
                     {
-                        if (item1.date.Value.Month == 5 && item1.date.Value.Year == item.date.Value.Year)
-                        {
-                            item1.revenue += item.revenue;
-                            item1.benefit += item.benefit;
-                            revenue5 = (int)item1.revenue;
-                            cout++;
-                        }
-                    }
-                    
-                    if (cout == 0)
-                    {
-                        model1.Add(item);
+                        revenue5 += item.revenue;
                     }
                 }
             }
-            model1.OrderByDescending(x => x.date);
-            return revenue5;
+            return (decimal)revenue5;
         }
-        public int revenue6()
+        public decimal revenue6()
         {
             var model = (from a in db.OrderDetails
                          join b in db.Orders on a.OrderID equals b.ID
@@ -289,34 +275,20 @@ namespace Model.Dao
                              benefit = x.benefit,
                              status = x.status
                          });
-            var model1 = new List<StatisticalModel>();
-            var revenue6 = 0;
+            decimal? revenue6 = 0;
             foreach (var item in model.ToList())
             {
-                int cout = 0;
                 if (item.status == true)
                 {
-                    foreach (var item1 in model1)
+                    if (item.date.Value.Month == 6)
                     {
-                        if (item1.date.Value.Month == 6 && item1.date.Value.Year == item.date.Value.Year)
-                        {
-                            item1.revenue += item.revenue;
-                            item1.benefit += item.benefit;
-                            revenue6 = (int)item1.revenue;
-                            cout++;
-                        }
-                    }
-
-                    if (cout == 0)
-                    {
-                        model1.Add(item);
+                        revenue6 += item.revenue;
                     }
                 }
             }
-            model1.OrderByDescending(x => x.date);
-            return revenue6;
+            return (decimal)revenue6;
         }
-        public int benefit5()
+        public decimal benefit5()
         {
             var model = (from a in db.OrderDetails
                          join b in db.Orders on a.OrderID equals b.ID
@@ -334,34 +306,20 @@ namespace Model.Dao
                              benefit = x.benefit,
                              status = x.status
                          });
-            var model1 = new List<StatisticalModel>();
-            var benefit5 = 0;
+            decimal? benefit5 = 0;
             foreach (var item in model.ToList())
             {
-                int cout = 0;
                 if (item.status == true)
                 {
-                    foreach (var item1 in model1)
+                    if (item.date.Value.Month == 5)
                     {
-                        if (item1.date.Value.Month == 5 && item1.date.Value.Year == item.date.Value.Year)
-                        {
-                            item1.revenue += item.revenue;
-                            item1.benefit += item.benefit;
-                            benefit5 = (int)item1.benefit;
-                            cout++;
-                        }
-                    }
-
-                    if (cout == 0)
-                    {
-                        model1.Add(item);
+                        benefit5 += item.benefit;
                     }
                 }
             }
-            model1.OrderByDescending(x => x.date);
-            return benefit5;
+            return (decimal)benefit5;
         }
-        public int benefit6()
+        public decimal benefit6()
         {
             var model = (from a in db.OrderDetails
                          join b in db.Orders on a.OrderID equals b.ID
@@ -379,33 +337,136 @@ namespace Model.Dao
                              benefit = x.benefit,
                              status = x.status
                          });
-            var model1 = new List<StatisticalModel>();
-            var benefit6 = 0;
+            decimal? benefit6 = 0;
             foreach (var item in model.ToList())
             {
-                int cout = 0;
                 if (item.status == true)
                 {
-                    foreach (var item1 in model1)
+                    if (item.date.Value.Month == 6)
                     {
-                        if (item1.date.Value.Month == 6 && item1.date.Value.Year == item.date.Value.Year)
-                        {
-                            item1.revenue += item.revenue;
-                            item1.benefit += item.benefit;
-                            benefit6 = (int)item1.benefit;
-                            cout++;
-                        }
-                    }
-
-                    if (cout == 0)
-                    {
-                        model1.Add(item);
+                        benefit6 += item.benefit;
                     }
                 }
             }
-            model1.OrderByDescending(x => x.date);
-            return benefit6;
+            return (decimal)benefit6;
         }
-
+        public decimal revenue4()
+        {
+            var model = (from a in db.OrderDetails
+                         join b in db.Orders on a.OrderID equals b.ID
+                         join c in db.Products on a.ProductID equals c.ID
+                         select new StatisticalModel()
+                         {
+                             date = b.CreatedDate,
+                             revenue = a.Price * a.Quantity,
+                             benefit = a.Quantity * (a.Price - c.OriginalPrice),
+                             status = b.Status
+                         }).AsEnumerable().Select(x => new StatisticalModel()
+                         {
+                             date = x.date,
+                             revenue = x.revenue,
+                             benefit = x.benefit,
+                             status = x.status
+                         });
+            decimal? revenue4 = 0;
+            foreach (var item in model.ToList())
+            {
+                if (item.status == true)
+                {
+                    if(item.date.Value.Month == 4)
+                    {
+                        revenue4 += item.revenue;
+                    }                   
+                }
+            }
+            return (decimal)revenue4;
+        }
+        public decimal benefit4()
+        {
+            var model = (from a in db.OrderDetails
+                         join b in db.Orders on a.OrderID equals b.ID
+                         join c in db.Products on a.ProductID equals c.ID
+                         select new StatisticalModel()
+                         {
+                             date = b.CreatedDate,
+                             revenue = a.Price * a.Quantity,
+                             benefit = a.Quantity * (a.Price - c.OriginalPrice),
+                             status = b.Status
+                         }).AsEnumerable().Select(x => new StatisticalModel()
+                         {
+                             date = x.date,
+                             revenue = x.revenue,
+                             benefit = x.benefit,
+                             status = x.status
+                         });
+            decimal? benefit4 = 0;
+            foreach (var item in model.ToList())
+            {
+                if (item.status == true)
+                {
+                    if (item.date.Value.Month == 4)
+                    {
+                        benefit4 += item.benefit;
+                    }
+                }
+            }
+            return (decimal)benefit4;
+        }
+        public decimal countrevenue()
+        {
+            var model = (from a in db.OrderDetails
+                         join b in db.Orders on a.OrderID equals b.ID
+                         join c in db.Products on a.ProductID equals c.ID
+                         select new StatisticalModel()
+                         {
+                             date = b.CreatedDate,
+                             revenue = a.Price * a.Quantity,
+                             benefit = a.Quantity * (a.Price - c.OriginalPrice),
+                             status = b.Status
+                         }).AsEnumerable().Select(x => new StatisticalModel()
+                         {
+                             date = x.date,
+                             revenue = x.revenue,
+                             benefit = x.benefit,
+                             status = x.status
+                         });
+            decimal? totalrevenue = 0;
+            foreach (var item in model.ToList())
+            {
+                if (item.status == true)
+                {
+                    totalrevenue += item.revenue;
+                }
+            }
+            return (decimal)totalrevenue;
+        }
+        public decimal countbenefit()
+        {
+            var model = (from a in db.OrderDetails
+                         join b in db.Orders on a.OrderID equals b.ID
+                         join c in db.Products on a.ProductID equals c.ID
+                         select new StatisticalModel()
+                         {
+                             date = b.CreatedDate,
+                             revenue = a.Price * a.Quantity,
+                             benefit = a.Quantity * (a.Price - c.OriginalPrice),
+                             status = b.Status
+                         }).AsEnumerable().Select(x => new StatisticalModel()
+                         {
+                             date = x.date,
+                             revenue = x.revenue,
+                             benefit = x.benefit,
+                             status = x.status
+                         });
+            decimal? totalbenefit = 0;
+            foreach (var item in model.ToList())
+            {
+                if (item.status == true)
+                {
+                    totalbenefit += item.benefit;
+                }
+            }
+            return (decimal)totalbenefit;
+        }
     }
 }

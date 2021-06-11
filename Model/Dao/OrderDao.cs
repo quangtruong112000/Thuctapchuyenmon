@@ -126,62 +126,6 @@ namespace Model.Dao
         {
             var count = (from a in db.Orders where a.Status == false select a).Count();
             return count;
-        }
-        public decimal countrevenue()
-        {
-            var model = (from a in db.OrderDetails
-                         join b in db.Orders on a.OrderID equals b.ID
-                         join c in db.Products on a.ProductID equals c.ID
-                         select new StatisticalModel()
-                         {
-                             date = b.CreatedDate,
-                             revenue = a.Price * a.Quantity,
-                             benefit = a.Quantity * (a.Price - c.OriginalPrice),
-                             status = b.Status
-                         }).AsEnumerable().Select(x => new StatisticalModel()
-                         {
-                             date = x.date,
-                             revenue = x.revenue,
-                             benefit = x.benefit,
-                             status = x.status
-                         });
-            decimal? totalrevenue = 0;
-            foreach (var item in model.ToList())
-            {
-                if (item.status == true)
-                {
-                    totalrevenue += item.revenue;                
-                }
-            }
-            return (decimal)totalrevenue;
-        }
-        public decimal countbenefit()
-        {
-            var model = (from a in db.OrderDetails
-                         join b in db.Orders on a.OrderID equals b.ID
-                         join c in db.Products on a.ProductID equals c.ID
-                         select new StatisticalModel()
-                         {
-                             date = b.CreatedDate,
-                             revenue = a.Price * a.Quantity,
-                             benefit = a.Quantity * (a.Price - c.OriginalPrice),
-                             status = b.Status
-                         }).AsEnumerable().Select(x => new StatisticalModel()
-                         {
-                             date = x.date,
-                             revenue = x.revenue,
-                             benefit = x.benefit,
-                             status = x.status
-                         });
-            decimal? totalbenefit = 0;
-            foreach (var item in model.ToList())
-            {
-                if (item.status == true)
-                {
-                    totalbenefit += item.benefit;
-                }
-            }
-            return (decimal)totalbenefit;
-        }
+        }     
     }
 }

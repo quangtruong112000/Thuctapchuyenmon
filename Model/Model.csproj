@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao\AboutDao.cs" />
+    <Compile Include="Dao\AdminDao.cs" />
     <Compile Include="Dao\CategoryDao.cs" />
     <Compile Include="Dao\ContactDao.cs" />
     <Compile Include="Dao\ContentDao.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Dao\StatisticalDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\About.cs" />
+    <Compile Include="EF\Ad.cs" />
     <Compile Include="EF\Category.cs" />
     <Compile Include="EF\Contact.cs" />
     <Compile Include="EF\Content.cs" />

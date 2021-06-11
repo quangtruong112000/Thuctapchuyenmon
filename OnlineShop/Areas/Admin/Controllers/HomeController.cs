@@ -12,8 +12,8 @@ namespace OnlineShop.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            ViewBag.countbenefit = new OrderDao().countbenefit();
-            ViewBag.countrevenue = new OrderDao().countrevenue();
+            ViewBag.countbenefit = new StatisticalDao().countbenefit();
+            ViewBag.countrevenue = new StatisticalDao().countrevenue();
             ViewBag.counttask = new OrderDao().counttask();
             ViewBag.countfeedback = new FeedbackDao().countfeedback();
             ViewBag.listSta = new StatisticalDao().listStatistical();
@@ -21,6 +21,8 @@ namespace OnlineShop.Areas.Admin.Controllers
             ViewBag.revenue6 = new StatisticalDao().revenue6();
             ViewBag.benefit5 = new StatisticalDao().benefit5();
             ViewBag.benefit6 = new StatisticalDao().benefit6();
+            ViewBag.revenue4 = new StatisticalDao().revenue4();
+            ViewBag.benefit4 = new StatisticalDao().benefit4();
             return View();
         }
     }

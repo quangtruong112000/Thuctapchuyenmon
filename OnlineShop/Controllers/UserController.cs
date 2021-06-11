@@ -81,6 +81,8 @@ namespace OnlineShop.Controllers
                 {
                     var userSession = new UserLogin();
                     userSession.UserName = user.UserName;
+                    userSession.Name = user.Name;
+                    userSession.Email = user.Email;
                     userSession.UserID = user.ID;
                     Session.Add(CommonConstants.USER_SESSION, userSession);
                 }
@@ -171,13 +173,14 @@ namespace OnlineShop.Controllers
                 {
                     ViewBag.Success = "Đăng kí thành công";
                     model = new RegisterModel();
+                    return View(model);
                 }
                 else
                 {
                     ModelState.AddModelError("", "Đăng kí không thành công");
                 }
             }
-            return View(model);
+            return View("Register");
         }
         public JsonResult LoadProvince()
         {
