@@ -15,7 +15,9 @@ Phần 2 :
 Đã hoàn thành:
 
 1.Xây dựng Cơ sở dữ liệu quản lí bán hàng.
+
 2.Chức năng đăng nhập admin.
+
 3.Thêm, sửa, xóa và tìm kiếm tài khoản admin
 
 4.Hiển thị thông tin chi tiết sản phẩm và sản phẩm liên quan
@@ -57,3 +59,9 @@ Phần 2 :
 Chưa hoàn thành:
 
 22.Viết báo cáo
+
+Phần 3: Hướng dẫn sử dụng:
+Tải về và backup file CSDL
+Chạy chương trình
+Đăng nhập tài khoản (truong@gmail.com/1) để đăng nhập vào trang admin
+
