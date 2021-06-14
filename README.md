@@ -1,8 +1,8 @@
 # Thuctapchuyenmon
-Tên : Trần Quang Trường
-Lớp: CQ.59.CNTT
-MSV: 5951071114
-Đề tài: QUẢN LÍ BÁN HÀNG – ASP.NET
+- Tên : Trần Quang Trường
+- Lớp: CQ.59.CNTT
+- MSV: 5951071114
+- Đề tài: QUẢN LÍ CỬA HÀNG BÁN ĐỒNG HỒ
 
 Giảng viên: Thầy Nguyễn Lê Minh.
 
