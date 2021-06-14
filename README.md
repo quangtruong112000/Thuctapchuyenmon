@@ -8,8 +8,11 @@ Giảng viên: Thầy Nguyễn Lê Minh.
 
 Phần 1: Công nghê sử dụng:
 - Visual Studio 2019
--  SQL Server
+- SQL Server
 - ASP.Net MVC
+- AJax, JQuery, Bootstrap
+- Entity Framework
+-  HTML/CSS/JS
 
 Phần 2 : 
 Đã hoàn thành:
