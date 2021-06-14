@@ -13,6 +13,7 @@ Phần 1: Công nghê sử dụng:
 - AJax, JQuery, Bootstrap
 - Entity Framework
 - HTML/CSS/JS
+- JavaScript
 
 Phần 2 : 
 Đã hoàn thành:
