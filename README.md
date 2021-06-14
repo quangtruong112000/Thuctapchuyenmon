@@ -23,7 +23,7 @@ Phần 2 :
 - Hiển thị thông tin chi tiết sản phẩm và sản phẩm liên quan
 - Hiển thị tin tức và các bài viết liên quan đến tin tức đó.   
 - Hiển thị danh sách sản phẩm liên quan và sản phẩm mới.     
-- Mã hóa mật khẩu trong mục User (MD5)      
+- Mã hóa mật khẩu trong mục User và Admin (MD5)      
 - Tạo giỏ hàng      
 - Thêm, sửa, xóa giỏ hàng       
 - Hiển thị danh sách sản phẩm.
