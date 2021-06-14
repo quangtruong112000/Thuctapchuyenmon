@@ -61,7 +61,10 @@ Chưa hoàn thành:
 22.Viết báo cáo
 
 Phần 3: Hướng dẫn sử dụng:
+
 Tải về và backup file CSDL
+
 Chạy chương trình
+
 Đăng nhập tài khoản (truong@gmail.com/1) để đăng nhập vào trang admin
 
