@@ -26,7 +26,8 @@ Phần 2 :
 - Hiển thị danh sách sản phẩm liên quan và sản phẩm mới.     
 - Mã hóa mật khẩu trong mục User và Admin (MD5)      
 - Tạo giỏ hàng      
-- Thêm, sửa, xóa giỏ hàng       
+- Thêm, sửa, xóa giỏ hàng.     
+- Gửi mail xác nhận để đổi mật khẩu khi quên mật khẩu.
 - Hiển thị danh sách sản phẩm.
 - Đăng nhập bằng tài khoản Facebook.
 - Đặt hàng (khách hàng đặt hàng qua trang web và gửi thông tin đơn hàng qua gmail cho cửa hàng).
