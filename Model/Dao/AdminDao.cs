@@ -25,19 +25,38 @@ namespace Model.Dao
         {
             try
             {
-                var admin = db.Admins.Find(entity.ID);
-                admin.Name = entity.Name;
-                admin.Status = entity.Status;
-                admin.GroupID = entity.GroupID;
+                var admin = db.Admins.Find(entity.ID);           
                 if (!string.IsNullOrEmpty(entity.Password))
                 {
                     admin.Password = entity.Password;
-                }               
+                }
+                admin.Email = entity.Email;
+                admin.Name = entity.Name;
+                admin.Status = entity.Status;
                 db.SaveChanges();
                 return true;
             }
             catch (Exception e)
             {
+                string s = e.Message.ToString() + "";
+                return false;
+            }
+        }
+        public bool ForgotPass(Ad entity)
+        {
+            try
+            {
+                var admin = db.Admins.Find(entity.ID);
+                if (!string.IsNullOrEmpty(entity.Password))
+                {
+                    admin.Password = entity.Password;
+                }
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                string s = e.Message.ToString() + "";
                 return false;
             }
         }
@@ -125,6 +144,11 @@ namespace Model.Dao
         public bool ckeckUserName(string userName)
         {
             return db.Admins.Count(x => x.UserName == userName) > 0;
-        }        
+        }
+        public bool checkEmail(string email)
+        {
+            return db.Admins.Count(x => x.Email == email) > 0;
+        }
+        
     }
 }

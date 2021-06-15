@@ -39,6 +39,11 @@ namespace OnlineShop.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
                     return View("Create");
                 }
+                else if (dao.checkEmail(admin.Email))
+                {
+                    ModelState.AddModelError("", "Email đã tồn tại");
+                    return View("Create");
+                }
                 else
                 {
                     var encryptedMd5Pas = Encryptor.GetMD5(admin.Password);

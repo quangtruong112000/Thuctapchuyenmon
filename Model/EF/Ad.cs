@@ -18,6 +18,10 @@
         [Display(Name = "Mật khẩu")]
         [Required(ErrorMessage ="Bạn phải nhập mật khẩu")]
         public string Password { get; set; }
+        [StringLength(250)]
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Bạn phải nhập email")]
+        public string Email { get; set; }
         [StringLength(50)]
         [Display(Name = "Tên")]
         [Required(ErrorMessage = "Bạn phải nhập tên")]
