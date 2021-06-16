@@ -40,6 +40,7 @@ Phần 2 :
 - Quản lí danh sách đơn đặt hàng.
 - Xuất file Excel báo cáo doanh thu.
 - Upload website lên host.
+- Trả lời khách hàng qua mail.
 
 Chưa hoàn thành:
 - Cập nhật sau
