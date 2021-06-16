@@ -53,6 +53,21 @@ namespace Model.Dao
                 return false;
             }
         }
+        public bool Reply(Feedback entity)
+        {
+            try
+            {
+                var feedback = db.Feedbacks.Find(entity.ID);
+                feedback.Reply = entity.Reply;
+                feedback.Status = true;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
         public bool Delete(int id)
         {
             try

@@ -43,8 +43,7 @@ namespace OnlineShop.Controllers
                 return Json(new
                 {
                     status = true
-                });
-                //send mail              
+                });     
                 
             }
             else

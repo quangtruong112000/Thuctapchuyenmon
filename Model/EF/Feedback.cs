@@ -25,6 +25,8 @@ namespace Model.EF
 
         [StringLength(250)]
         public string Content { get; set; }
+        [StringLength(250)]
+        public string Reply { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 

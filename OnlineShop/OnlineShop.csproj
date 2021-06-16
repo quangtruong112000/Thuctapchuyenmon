@@ -159,6 +159,7 @@
     <Compile Include="Areas\Admin\Controllers\CartController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\FeedbackController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
@@ -203,6 +204,7 @@
     <Content Include="Assets\admin\img\undraw_rocket.svg" />
     <Content Include="Assets\admin\js\controller\aboutController.js" />
     <Content Include="Assets\admin\js\controller\cartController.js" />
+    <Content Include="Assets\admin\js\controller\customerController.js" />
     <Content Include="Assets\admin\js\controller\feedbackController.js" />
     <Content Include="Assets\admin\js\controller\productcategoryController.js" />
     <Content Include="Assets\admin\js\controller\productController.js" />
@@ -1904,6 +1906,7 @@
     <Content Include="Assets\client\js\controller\baseController.js" />
     <Content Include="Assets\client\js\controller\cartController.js" />
     <Content Include="Assets\client\js\controller\contactController.js" />
+    <Content Include="Assets\client\js\controller\replyController.js" />
     <Content Include="Assets\client\js\controller\userController.js" />
     <Content Include="Assets\client\js\jquery-ui.js" />
     <Content Include="Assets\client\js\jquery.min.js" />
@@ -1913,6 +1916,7 @@
     <Content Include="Assets\client\js\slick.min.js" />
     <Content Include="Assets\client\template\contact.html" />
     <Content Include="Assets\client\template\neworder.html" />
+    <Content Include="Assets\client\template\reply.html" />
     <Content Include="bin\OnlineShop.dll" />
     <Content Include="bin\OnlineShop.pdb" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -2167,6 +2171,10 @@
     <Content Include="Areas\Admin\Views\Statistical\Search.cshtml" />
     <Content Include="Areas\Admin\Views\Login\ForgotPassword.cshtml" />
     <Content Include="Areas\Admin\Views\Login\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\Reply.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -7,31 +7,35 @@
         </div>
         <div class="sidebar-brand-text mx-3"><sup>KEN</sup><sub>STORE</sub></div>
     </a>
-
-
     <hr class="sidebar-divider my-0">
-
-
     <li class="nav-item">
-        <a class="nav-link" href="/Admin/Home/Index">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Trang chủ</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="/Admin/User/Index">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+           aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Tài khoản</span>
+            <span>Trang chủ và thống kê</span>
         </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/Admin/Home/Index">Trang chủ</a>
+                <a class="collapse-item" href="/Admin/Statistical/Index">Thống kê</a>
+            </div>
+        </div>
     </li>
-
     <li class="nav-item">
-        <a class="nav-link collapsed" href="/Admin/Content/Index">
-            <i class="fa fa-comment fa-fw"></i>
-            <span>Tin tức</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+           aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Quản lí tài khoản</span>
         </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/Admin/User/Index">Tài khoản quản lí</a>
+                <a class="collapse-item" href="/Admin/Customer/Index">Tài khoản khách hàng</a>
+            </div>
+        </div>
     </li>
-
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -62,12 +66,7 @@
             </div>
         </div>
     </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="/Admin/Statistical/Index">
-            <i class="fa fa-comment fa-fw"></i>
-            <span>Thống kê</span>
-        </a>
-    </li>
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
            aria-expanded="true" aria-controls="collapseUtilities">
@@ -79,6 +78,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/Admin/About/Index">Giới thiệu</a>
                 <a class="collapse-item" href="/Admin/Slide/Index">Slide</a>
+                <a class="collapse-item" href="/Admin/Content/Index">Tin tức</a>
                 <a class="collapse-item" href="/Admin/Feedback/Index">Phản hồi</a>
             </div>
         </div>
