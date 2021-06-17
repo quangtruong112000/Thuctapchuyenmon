@@ -48,5 +48,5 @@ Chưa hoàn thành:
 Phần 3: Hướng dẫn sử dụng:
 - Tải về và backup file CSDL
 - Chạy chương trình
-- Đăng nhập tài khoản (truong/1) để đăng nhập vào trang admin
+- Đăng nhập tài khoản (truong/1) để đăng nhập vào trang admin(localhost/admin/login)
 - Xin cảm ơn
