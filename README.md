@@ -40,6 +40,7 @@ Phần 2 :
 - Quản lí danh sách đơn đặt hàng.
 - Xuất file Excel báo cáo doanh thu.
 - Upload website lên host.
+- Trả lời khách hàng qua mail.
 
 Chưa hoàn thành:
 - Cập nhật sau
@@ -47,5 +48,5 @@ Chưa hoàn thành:
 Phần 3: Hướng dẫn sử dụng:
 - Tải về và backup file CSDL
 - Chạy chương trình
-- Đăng nhập tài khoản (truong/1) để đăng nhập vào trang admin
+- Đăng nhập tài khoản (truong/1) để đăng nhập vào trang admin(localhost/admin/login)
 - Xin cảm ơn
