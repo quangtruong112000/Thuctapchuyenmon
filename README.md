@@ -46,7 +46,11 @@ Chưa hoàn thành:
 - Cập nhật sau
 
 Phần 3: Hướng dẫn sử dụng:
+- c1:
 - Tải về và backup file CSDL
 - Chạy chương trình
 - Đăng nhập tài khoản (truong/1) để đăng nhập vào trang admin(localhost/admin/login)
+- c2: 
+- truy cạp vào trang web http://kenstore.somee.com để đăng nhập vào trang khách hàng
+- truy cạp vào trang web http://kenstore.somee.com/admin/login để đăng nhập vào trang quản lí (đăng nhập tài khoản: truong/1)
 - Xin cảm ơn
