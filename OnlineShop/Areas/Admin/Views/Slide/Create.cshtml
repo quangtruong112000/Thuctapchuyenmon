@@ -30,7 +30,7 @@
                     $.ajax({
 
                         type: 'POST',
-                        url: '/Admin/Product/ProcessUpload',
+                        url: '/Admin/Slide/ProcessUpload',
                         contentType: false,
                         processData: false,
                         data: formData,
@@ -39,7 +39,7 @@
                             $('#Image').val(urlImage);
                         },
                         error: function (err) {
-                            @*Alert('Có lỗi khi upload:' + err.statusText);*@
+                            @* Alert('Có lỗi khi upload:' + err.statusText);*@
                         }
                     })
                 }

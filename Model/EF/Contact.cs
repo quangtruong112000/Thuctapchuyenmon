@@ -1,4 +1,4 @@
-namespace Model.EF
+﻿namespace Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -12,8 +12,9 @@ namespace Model.EF
         public int ID { get; set; }
 
         [Column(TypeName = "ntext")]
+        [Display(Name = "Nội dung")]
         public string Content { get; set; }
-
+        [Display(Name = "Trạng thái")]
         public bool? Status { get; set; }
     }
 }
