@@ -32,7 +32,7 @@ namespace Model.Dao
             IQueryable<Content> model = db.Contents;
             return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
         }
-        public List<Content> ContentPaging(ref int totalRecord, int page = 1, int pageSize = 1)
+        public List<Content> ContentPaging(ref int totalRecord, int page, int pageSize)
         {
             totalRecord = db.Contents.Count();
             return db.Contents.OrderBy(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize).ToList();

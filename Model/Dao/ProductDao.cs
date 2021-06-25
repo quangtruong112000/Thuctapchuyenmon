@@ -33,7 +33,7 @@ namespace Model.Dao
             totalRecord = db.Products.Count();
             return db.Products.Where(x => x.CategoryID == categoryID).OrderBy(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize).ToList();
         }
-        public List<ProductViewModel> Search(string keyword, ref int totalRecord)
+        public List<ProductViewModel> Search(string keyword, ref int totalRecord, int page, int pageSize)
         {
             totalRecord = db.Products.Where(x => x.Name == keyword).Count();
             var model = (from a in db.Products
@@ -49,7 +49,9 @@ namespace Model.Dao
                              Images = a.Image,
                              Name = a.Name,
                              MetaTitle = a.MetaTitle,
-                             Price = a.Price
+                             Price = a.Price,
+                             PromotionPrice = a.PromotionPrice,
+                             Status = a.Status
                          }).AsEnumerable().Select(x => new ProductViewModel()
                          {
                              CateMetaTitle = x.MetaTitle,
@@ -59,10 +61,11 @@ namespace Model.Dao
                              Images = x.Images,
                              Name = x.Name,
                              MetaTitle = x.MetaTitle,
-                             Price = x.Price
+                             Price = x.Price,
+                             PromotionPrice = x.PromotionPrice,
+                             Status = x.Status
                          });
-            model.OrderByDescending(x => x.CreatedDate);
-            return model.ToList();
+            return model.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize).ToList();
         }
         public List<Product> ListFeatureProduct(int top)
         {

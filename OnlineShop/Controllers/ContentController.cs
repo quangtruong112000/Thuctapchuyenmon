@@ -10,7 +10,7 @@ namespace OnlineShop.Controllers
     public class ContentController : Controller
     {
         // GET: Content
-        public ActionResult Index(int page = 1, int pageSize = 1)
+        public ActionResult Index(int page = 1, int pageSize = 3)
         {
             int totalRecord = 0;
             var model = new ContentDao().ContentPaging(ref totalRecord, page, pageSize);           

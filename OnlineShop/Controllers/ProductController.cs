@@ -48,13 +48,22 @@ namespace OnlineShop.Controllers
             ViewBag.First = 1;
             return View(model);
         }
-        public ActionResult Search(string keyword, int page = 1, int pageSize = 1)
+        public ActionResult Search(string keyword, int page = 1, int pageSize = 10)
         {
             int totalRecord = 0;
-            var model = new ProductDao().Search(keyword, ref totalRecord);
+            var model = new ProductDao().Search(keyword, ref totalRecord, page, pageSize);
             ViewBag.Total = totalRecord;
             ViewBag.Page = page;
             ViewBag.Keyword = keyword;
+            int maxPage = 5;
+            int totalPage = 0;
+            totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
+            ViewBag.totalPage = totalPage;
+            ViewBag.maxPage = maxPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Prev = page - 1;
+            ViewBag.Last = maxPage;
+            ViewBag.First = 1;
             return View(model);
         }
         [OutputCache (Duration =int.MaxValue, VaryByParam = "id")]

@@ -32,8 +32,16 @@
                             <td>@item.Product.Name</td>
                             <td><img src="@item.Product.Image" width="100" /></td>
                             <td><input type="text" class="txtQuantity" data-id="@item.Product.ID" value="@item.Quantity" /></td>
-                            <td>@item.Product.Price.GetValueOrDefault(0).ToString("N0")</td>
-                            <td>@((item.Product.Price.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</td>
+                            @if (item.Product.PromotionPrice != null)
+                            {
+                                <td>@item.Product.PromotionPrice.GetValueOrDefault(0).ToString("N0")</td>
+                                <td>@((item.Product.PromotionPrice.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</td>
+                            }
+                            else
+                            {
+                                <td>@item.Product.Price.GetValueOrDefault(0).ToString("N0")</td>
+                                <td>@((item.Product.Price.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</td>
+                            }
                             <td><a href="#" data-id="@item.Product.ID" class="btndelete">Xóa</a></td>
                         </tr>
                         }

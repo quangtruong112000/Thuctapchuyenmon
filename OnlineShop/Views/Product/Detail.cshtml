@@ -75,7 +75,15 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="product-price"> Giá: <span>@(Model.Price.HasValue? Model.Price.Value.ToString("N0"):"Liên hệ")</span> VND</h3>
+                        @if (Model.PromotionPrice != null)
+                        {
+                            <h3 class="product-price" style="text-decoration: line-through"> Giá: <span>@(Model.Price.HasValue? Model.Price.Value.ToString("N0"):"Liên hệ")</span> VND</h3>
+                            <h3 class="product-price"> Giá khuyến mãi: <span>@(Model.PromotionPrice.HasValue? Model.PromotionPrice.Value.ToString("N0"):"Liên hệ")</span> VND</h3>
+                        }
+                        else
+                        {
+                            <h3 class="product-price"> Giá: <span>@(Model.Price.HasValue? Model.Price.Value.ToString("N0"):"Liên hệ")</span> VND</h3>
+                        }
                         <span class="product-available">@(Model.Status? "Còn hàng":"Hết hàng")</span>
                     </div>
                     <p>@Model.Description</p>

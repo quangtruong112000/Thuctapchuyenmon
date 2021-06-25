@@ -106,7 +106,15 @@
                                         </div>
                                         <div class="product-body" style="height:150px">
                                             <h3 class="product-name"><a href="#">@item.Name</a></h3>
-                                            <h4 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
+                                            @if (item.PromotionPrice != null)
+                                            {
+                                                <h4 class="product-price" style="text-decoration:line-through">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
+                                                <h4 class="product-price">@(item.PromotionPrice.HasValue?item.PromotionPrice.Value.ToString("N0"):"Liên hệ")</h4>
+                                            }
+                                            else
+                                            {
+                                                <h4 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
+                                            }
                                             <h4>@(item.Status? "Còn hàng":"Hết hàng")</h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
@@ -166,7 +174,15 @@
                                         </div>
                                         <div class="product-body" style="height:150px">
                                             <h3 class="product-name"><a href="#">@item.Name</a></h3>
-                                            <h4 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
+                                            @if (item.PromotionPrice != null)
+                                            {
+                                                <h4 class="product-price" style="text-decoration:line-through">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
+                                                <h4 class="product-price">@(item.PromotionPrice.HasValue?item.PromotionPrice.Value.ToString("N0"):"Liên hệ")</h4>
+                                            }
+                                            else
+                                            {
+                                                <h4 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
+                                            }
                                             <h4>@(item.Status? "Còn hàng":"Hết hàng")</h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>

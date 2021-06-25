@@ -9,17 +9,24 @@
         <div class="cart-list">
             @foreach (var item in Model)
             {
-                
-            <div class="product-widget">               
-                <tr>
-                    <td>@item.Product.Name</td>
-                    <td><img src="@item.Product.Image" width="100" /></td>
-                    <td>@item.Product.Price.GetValueOrDefault(0).ToString("N0")<span> VNĐ</span></td>                   
-                </tr>
-                <div>
-                    <td><a href="#" data-id="@item.Product.ID" class="btndelete">Xóa</a></td>
+
+                <div class="product-widget">
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td><img src="@item.Product.Image" width="100" /></td>
+                        @if (item.Product.PromotionPrice != null)
+                        {
+                            <td>@item.Product.PromotionPrice.GetValueOrDefault(0).ToString("N0")<span> VNĐ</span></td>
+                        }
+                        else
+                        {
+                            <td>@item.Product.Price.GetValueOrDefault(0).ToString("N0")<span> VNĐ</span></td>
+                        }
+                    </tr>
+                    <div>
+                        <td><a href="#" data-id="@item.Product.ID" class="btndelete">Xóa</a></td>
+                    </div>
                 </div>
-            </div>
             }
 
         </div>

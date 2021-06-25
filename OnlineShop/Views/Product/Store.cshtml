@@ -73,19 +73,39 @@
                     @foreach (var item in Model)
                     {
                         var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
-                        <div class="product col-xs-4">
-                            <div class="product-img">
-                                <a href="@url"><img src="@item.Image" width="262" height="170" alt="@item.Name"></a>
+                        if (item.PromotionPrice != null)
+                        {
+                            <div class="product col-xs-4">
+                                <div class="product-img">
+                                    <a href="@url"><img src="@item.Image" width="262" height="170" alt="@item.Name"></a>
+                                </div>
+                                <div class="product-body" style="height:150px">
+                                    <h5 class="product-name"><a href="#">@item.Name</a></h5>
+                                    <h5 class="product-price" style="text-decoration: line-through">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h5>
+                                    <h5 class="product-price">@(item.PromotionPrice.HasValue?item.PromotionPrice.Value.ToString("N0"):"Liên hệ")</h5>
+                                    <h5>@(item.Status? "Còn hàng":"Hết hàng")</h5>
+                                </div>
+                                <div class="add-to-cart" style="width:260px">
+                                    <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ hàng</a></h4>
+                                </div>
                             </div>
-                            <div class="product-body" style="height:150px">
-                                <h5 class="product-name"><a href="#">@item.Name</a></h5>
-                                <h5 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h5>
-                                <h5>@(item.Status? "Còn hàng":"Hết hàng")</h5>
+                        }
+                        else
+                        {
+                            <div class="product col-xs-4">
+                                <div class="product-img">
+                                    <a href="@url"><img src="@item.Image" width="262" height="170" alt="@item.Name"></a>
+                                </div>
+                                <div class="product-body" style="height:150px">
+                                    <h5 class="product-name"><a href="#">@item.Name</a></h5>
+                                    <h5 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h5>
+                                    <h5>@(item.Status? "Còn hàng":"Hết hàng")</h5>
+                                </div>
+                                <div class="add-to-cart" style="width:260px">
+                                    <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ hàng</a></h4>
+                                </div>
                             </div>
-                            <div class="add-to-cart" style="width:260px">
-                                <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ hàng</a></h4>
-                            </div>
-                        </div>
+                        }
                     }
                     @if (ViewBag.totalPage > 1)
                     {
@@ -129,7 +149,7 @@
                     }
                     else
                     {
-                    <span>Không có sản phẩm nào</span>
+                        <span>Không có sản phẩm nào</span>
                     }
                 </div>
                 <!-- /product -->
@@ -140,6 +160,3 @@
     </div>
     <!-- /row -->
 </div>
-<!-- /container -->
-</div>
-<!-- /SECTION -->
