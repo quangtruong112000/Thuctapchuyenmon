@@ -18,19 +18,20 @@
     </div>
     @foreach (var item in Model)
     {
-        <div class="image group">
-            <div class="grid images_3_of_1">
-                <img src="@item.Image" alt="" width="300"/>
-            </div>
-            <div class="grid news_desc">
-                <h3><a href="/tin-tuc/@item.MetaTitle-@item.ID"><span>Bài viết liên quan: </span>@item.Name </a></h3>
-                <h4>Đăng bởi: @item.CreatedDate by <span><a href="#">@item.CreatedBy</a></span></h4>
-                <h4>Mô tả: @item.Description</h4>
+        <div class="col-md-12">
+            <div class="image group">
+                <div class="col-md-4">
+                    <a href="/tin-tuc/@item.MetaTitle-@item.ID"><img src="@item.Image" alt="" width="350" /></a>
+                </div>
+                <div class="col-md-8">
+                    <h3><a href="/tin-tuc/@item.MetaTitle-@item.ID"><span>Bài viết liên quan: </span>@item.Name </a></h3>
+                    <h5>Đăng ngày: @item.CreatedDate bởi <span><a href="#">@item.CreatedBy</a></span></h5>
+                    <span>Mô tả: @item.Description</span>
+                </div>
             </div>
         </div>
+        <span>-----------------------------------------------------------------------------------------------------------</span>
     }
-
-
     @if (ViewBag.TotalPage > 1)
     {
         var pageDisplay = (int)ViewBag.MaxPage;

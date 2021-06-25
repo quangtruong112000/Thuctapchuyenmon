@@ -20,13 +20,18 @@ namespace Model.Dao
         {
             return db.Products.OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
+        public List<Product> ListPromotion()
+        {
+            return db.Products.Where(x => x.PromotionPrice != null).ToList();
+        }
         public List<string> ListName(String keywork)
         {
             return db.Products.Where(x => x.Name.Contains(keywork)).Select(x => x.Name).ToList();
         }
-        public List<Product> ListByCategoryId(long categoryID)
+        public List<Product> ListByCategoryId(long categoryID, ref int totalRecord, int page = 1, int pageSize = 8)
         {
-            return db.Products.Where(x => x.CategoryID == categoryID).ToList();
+            totalRecord = db.Products.Count();
+            return db.Products.Where(x => x.CategoryID == categoryID).OrderBy(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize).ToList();
         }
         public List<ProductViewModel> Search(string keyword, ref int totalRecord)
         {
@@ -85,6 +90,11 @@ namespace Model.Dao
             }
             return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
         }
+        public List<Product> ProductPaging(ref int totalRecord,int page = 1, int pageSize = 9)
+        {
+            totalRecord = db.Products.Count();
+            return db.Products.OrderBy(x=>x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+        }
         public Product GetByID(long id)
         {
             return db.Products.Find(id);
@@ -118,6 +128,7 @@ namespace Model.Dao
                 product.Description = entity.Description;
                 product.OriginalPrice = entity.OriginalPrice;
                 product.Price = entity.Price;
+                product.PromotionPrice = entity.PromotionPrice;
                 product.Quantity = entity.Quantity;
                 product.CategoryID = entity.CategoryID;
                 product.ModifiedBy = entity.ModifiedBy;

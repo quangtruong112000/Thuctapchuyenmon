@@ -17,30 +17,27 @@
     </div>
     @foreach (var item in Model)
     {
-        <div class="image group">
-            <div class="grid images_3_of_1">
-                <img src="@item.Image" alt="" width="300"/>
-            </div>
-            <div class="grid news_desc">
-                <h3><span>Tên bài viết: </span><a href="/tin-tuc/@item.MetaTitle-@item.ID">@item.Name </a></h3>
-                <h4>Đăng bởi: @item.CreatedDate by <span><a href="#">@item.CreatedBy</a></span></h4>
-                <h4><span>Mô tả: </span>@item.Description</h4>
-            </div>
+        <div class="col-md-12">
+            <div class="image group">
+                <div class="col-md-4">
+                    <a href="/tin-tuc/@item.MetaTitle-@item.ID"><img src="@item.Image" alt="" width="350" height="200" /></a>
+                </div>
+                <div class="col-md-8" style="height:200px">
+                    <h3><span>Tên bài viết: </span><a href="/tin-tuc/@item.MetaTitle-@item.ID">@item.Name </a></h3>
+                    <h5>Đăng ngày: @item.CreatedDate bởi <span><a href="#">@item.CreatedBy</a></span></h5>
+                    <span><span>Mô tả: </span>@item.Description</span>
+                </div>
+            </div>          
         </div>
     }
-
-
     @if (ViewBag.TotalPage > 1)
     {
         var pageDisplay = (int)ViewBag.MaxPage;
         int totalPage = (int)ViewBag.TotalPage;
         int currentPage = ((int)ViewBag.Page);
-
-        // Create numeric links
         var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
         var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
-
-        var link = "/tin-tuc";
+        var link = "/tin-tuc/";
         <nav>
             <ul class="pagination">
                 @if (currentPage > ViewBag.First)

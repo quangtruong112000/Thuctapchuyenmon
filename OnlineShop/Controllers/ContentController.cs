@@ -10,17 +10,14 @@ namespace OnlineShop.Controllers
     public class ContentController : Controller
     {
         // GET: Content
-        public ActionResult Index(int page = 1, int pageSize = 5)
+        public ActionResult Index(int page = 1, int pageSize = 1)
         {
-            var model = new ContentDao().ListAllPaging(page, pageSize);
             int totalRecord = 0;
-
+            var model = new ContentDao().ContentPaging(ref totalRecord, page, pageSize);           
             ViewBag.Total = totalRecord;
             ViewBag.Page = page;
-
             int maxPage = 5;
             int totalPage = 0;
-
             totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
             ViewBag.TotalPage = totalPage;
             ViewBag.MaxPage = maxPage;

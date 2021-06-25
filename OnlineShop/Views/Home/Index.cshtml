@@ -102,9 +102,9 @@
                                     var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
                                     <div class="product">
                                         <div class="product-img">
-                                            <a href="@url"><img src="@item.Image" class="w-100" alt="@item.Name"></a>
+                                            <a href="@url"><img src="@item.Image" height="280" class="w-100" alt="@item.Name"></a>
                                         </div>
-                                        <div class="product-body">
+                                        <div class="product-body" style="height:150px">
                                             <h3 class="product-name"><a href="#">@item.Name</a></h3>
                                             <h4 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
                                             <h4>@(item.Status? "Còn hàng":"Hết hàng")</h4>
@@ -162,9 +162,9 @@
                                     var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
                                     <div class="product">
                                         <div class="product-img">
-                                            <a href="@url"><img src="@item.Image" class="w-100" alt="@item.Name"></a>
+                                            <a href="@url"><img src="@item.Image" height="280" class="w-100" alt="@item.Name"></a>
                                         </div>
-                                        <div class="product-body">
+                                        <div class="product-body" style="height:150px">
                                             <h3 class="product-name"><a href="#">@item.Name</a></h3>
                                             <h4 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h4>
                                             <h4>@(item.Status? "Còn hàng":"Hết hàng")</h4>
