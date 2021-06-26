@@ -67,6 +67,12 @@ namespace Model.Dao
                          });
             return model.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize).ToList();
         }
+        public List<Product> SearchPrice(long pricemin, long pricemax, ref int totalRecord, int page, int pageSize)
+        {
+            totalRecord = db.Products.Where(x => x.Price > pricemin && x.Price < pricemax).Count();
+            var s= db.Products.Where(x => x.Price > pricemin && x.Price < pricemax).OrderBy(x=>x.CreatedDate).ToList();
+            return s;
+        }
         public List<Product> ListFeatureProduct(int top)
         {
             return db.Products.Where(x => x.TopHot != null && x.TopHot > DateTime.Now).OrderByDescending(x => x.CreatedDate).Take(top).ToList();

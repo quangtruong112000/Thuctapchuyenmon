@@ -1900,6 +1900,7 @@
     <Content Include="Assets\client\fonts\slick.svg" />
     <Content Include="Assets\client\img\casio\Casio-1200WHD-1AVDF-399x399.jpg" />
     <Content Include="Assets\client\img\casio\casio_LRW-200H-2BVDF-399x399.jpg" />
+    <Content Include="Assets\client\img\giohang.png" />
     <Content Include="Assets\client\img\saga\saga_53585-RGMPRG-2S.jpg" />
     <Content Include="Assets\client\img\saga\saga_71865-SVBLSV-2L-399x399.jpg" />
     <Content Include="Assets\client\js\bootstrap.min.js" />
@@ -2217,6 +2218,7 @@
     <Content Include="Views\Content\Tag.cshtml" />
     <Content Include="Views\Product\Store.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Product\SearchPrice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

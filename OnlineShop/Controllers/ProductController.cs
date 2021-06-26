@@ -76,9 +76,9 @@ namespace OnlineShop.Controllers
         }
         public ActionResult Store(int page = 1, int pageSize = 9)
         {
+            int totalRecord = 0;            
             ViewBag.listpromotion = new ProductDao().ListPromotion();
-            ViewBag.category = new ProductCategoryDao().ListAll();
-            int totalRecord = 0;
+            ViewBag.category = new ProductCategoryDao().ListAll();         
             var product = new ProductDao().ProductPaging(ref totalRecord, page,pageSize);
             ViewBag.Total = totalRecord;
             ViewBag.Page = page;
@@ -92,6 +92,30 @@ namespace OnlineShop.Controllers
             ViewBag.Last = maxPage;
             ViewBag.First = 1;
             return View(product);
+        }
+        [HttpPost]
+        public ActionResult SearchPrice( int page = 1, int pageSize = 9)
+        {
+            string pricemin = (Request.Form["pricemin"].ToString());
+            string pricemax = (Request.Form["pricemax"].ToString());
+            int totalRecord = 0;
+            ViewBag.listpromotion = new ProductDao().ListPromotion();
+            ViewBag.category = new ProductCategoryDao().ListAll();
+            ViewBag.SearchPrice = new ProductDao().SearchPrice(Convert.ToInt64( pricemin), Convert.ToInt64(pricemax), ref totalRecord, page, pageSize);
+            ViewBag.Total = totalRecord;
+            ViewBag.Page = page;
+            ViewBag.Pricemin = pricemin;
+            ViewBag.Pricemax = pricemax;
+            int maxPage = 5;
+            int totalPage = 0;
+            totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
+            ViewBag.totalPage = totalPage;
+            ViewBag.maxPage = maxPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Prev = page - 1;
+            ViewBag.Last = maxPage;
+            ViewBag.First = 1;
+            return View();
         }
     }
 }

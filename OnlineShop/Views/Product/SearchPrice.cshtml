@@ -1,10 +1,10 @@
-﻿@model List<Model.EF.Product>
+﻿
 @{
-    ViewBag.Title = "Store";
+    ViewBag.Title = "SearchPrice";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var listcate = (List<Model.EF.ProductCategory>)ViewBag.category;
     var listpromo = (List<Model.EF.Product>)ViewBag.listpromotion;
-    var listsearchprice = (List<Model.ViewModel.ProductViewModel>)ViewBag.SearchPrice;
+    var listsearchprice = (List<Model.EF.Product>)ViewBag.SearchPrice;
 
 }
 <!-- SECTION -->
@@ -33,11 +33,11 @@
                     {
                         <div class="price-filter">
                             <div class="input-number price-min">
-                                <input id="pricemin" type="number" name="pricemin">
+                                <input id="pricemin" type="number" name="pricemin" required title="Bạn phải nhập giá">
                             </div>
                             <span>-</span>
                             <div class="input-number price-max">
-                                <input id="pricemax" type="number" name="pricemax">
+                                <input id="pricemax" type="number" name="pricemax" required title="Bạn phải nhập giá">
                             </div>
                         </div>
                         <button class="search-btn">Tìm kiếm</button>
@@ -70,42 +70,53 @@
                 <!-- store products -->
                 <div class="row">
                     <!-- product -->
-                    @foreach (var item in Model)
+                    @if (listsearchprice.Count > 0)
                     {
-                        var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
-                        if (item.PromotionPrice != null)
+                        foreach (var item in listsearchprice)
                         {
-                            <div class="product col-xs-4">
-                                <div class="product-img">
-                                    <a href="@url"><img src="@item.Image" width="262" height="170" alt="@item.Name"></a>
+                            var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                            if (item.PromotionPrice != null)
+                            {
+                                <div class="product col-xs-4">
+                                    <div class="product-img">
+                                        <a href="@url"><img src="@item.Image" width="262" height="170" alt="@item.Name"></a>
+                                    </div>
+                                    <div class="product-body" style="height:150px">
+                                        <h5 class="product-name"><a href="#">@item.Name</a></h5>
+                                        <h5 class="product-price" style="text-decoration: line-through">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h5>
+                                        <h5 class="product-price">@(item.PromotionPrice.HasValue?item.PromotionPrice.Value.ToString("N0"):"Liên hệ")</h5>
+                                        <h5>@(item.Status? "Còn hàng":"Hết hàng")</h5>
+                                    </div>
+                                    <div class="add-to-cart" style="width:260px">
+                                        <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ hàng</a></h4>
+                                    </div>
                                 </div>
-                                <div class="product-body" style="height:150px">
-                                    <h5 class="product-name"><a href="#">@item.Name</a></h5>
-                                    <h5 class="product-price" style="text-decoration: line-through">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h5>
-                                    <h5 class="product-price">@(item.PromotionPrice.HasValue?item.PromotionPrice.Value.ToString("N0"):"Liên hệ")</h5>
-                                    <h5>@(item.Status? "Còn hàng":"Hết hàng")</h5>
+                            }
+                            else
+                            {
+                                <div class="product col-xs-4">
+                                    <div class="product-img">
+                                        <a href="@url"><img src="@item.Image" width="262" height="170" alt="@item.Name"></a>
+                                    </div>
+                                    <div class="product-body" style="height:150px">
+                                        <h5 class="product-name"><a href="#">@item.Name</a></h5>
+                                        <h5 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h5>
+                                        <h5>@(item.Status? "Còn hàng":"Hết hàng")</h5>
+                                    </div>
+                                    <div class="add-to-cart" style="width:260px">
+                                        <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ hàng</a></h4>
+                                    </div>
                                 </div>
-                                <div class="add-to-cart" style="width:260px">
-                                    <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ hàng</a></h4>
-                                </div>
-                            </div>
+                            }
                         }
-                        else
-                        {
-                            <div class="product col-xs-4">
-                                <div class="product-img">
-                                    <a href="@url"><img src="@item.Image" width="262" height="170" alt="@item.Name"></a>
-                                </div>
-                                <div class="product-body" style="height:150px">
-                                    <h5 class="product-name"><a href="#">@item.Name</a></h5>
-                                    <h5 class="product-price">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</h5>
-                                    <h5>@(item.Status? "Còn hàng":"Hết hàng")</h5>
-                                </div>
-                                <div class="add-to-cart" style="width:260px">
-                                    <h4 class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm vào giỏ hàng</a></h4>
-                                </div>
-                            </div>
-                        }
+                    }
+                    else
+                    {
+                        <div class="col-md-12" style="text-align:center">
+                            <img src="/Assets/client/img/giohang.png" />
+                            <h1>Không có sản phẩm nào</h1>
+                        </div>
+
                     }
                     @if (ViewBag.totalPage > 1)
                     {
@@ -146,10 +157,6 @@
                             </ul>
                         </nav>
 
-                    }
-                    else
-                    {
-                        <span>Không có sản phẩm nào</span>
                     }
                 </div>
                 <!-- /product -->

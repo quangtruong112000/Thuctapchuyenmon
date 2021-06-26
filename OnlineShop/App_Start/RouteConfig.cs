@@ -91,7 +91,7 @@ namespace OnlineShop
                 url: "tim-kiem",
                 defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional },
                 namespaces: new[] { "OnlineShop.Controllers" }
-            );
+            );          
             routes.MapRoute(
                 name: "News",
                 url: "tin-tuc",
